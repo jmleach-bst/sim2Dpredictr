@@ -2,4 +2,5 @@
 .Rhistory
 .RData
 inst/doc
-tests
+README.Rmd
+sim2Dpredictr.Rproj
