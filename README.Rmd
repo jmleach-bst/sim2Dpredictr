@@ -23,7 +23,7 @@ The goal of sim2Dpredictr is to facilitate straightforward simulation of spatial
 
 You can install the released version of sim2Dpredictr from [github](https://github.com) with:
 
-``` r
+```{r}
 library(remotes)
 
 install_github("jmleach-bst/sim2Dpredictr", force=T, build_vignettes=T)
