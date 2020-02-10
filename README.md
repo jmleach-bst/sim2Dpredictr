@@ -81,3 +81,4 @@ each analzed dataset can be obtained and then used to evaluate variable
 selection performance. The documentation provides details about how to
 use these functions (and others) to create desired simulations, and a
 detailed vignette is being written to provide further guidance.
+"# sim2Dpredictr" 
