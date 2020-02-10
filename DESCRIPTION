@@ -1,0 +1,27 @@
+Package: sim2Dpredictr
+Title: Simulation in (Generalized) Linear Model Framework with Spatially Dependent Design Matrices
+Version: 0.1.0
+Authors@R: person("Justin", "Leach", email = "jleach@uab.edu", role = c("aut", "cre", "cph"))
+Description: Provides tools for simulating spatially dependent predictors (continuous or binary), which are used to generate scalar outcomes in a (generalized) linear model framework. Predictors are generated with Gauss Markov Random Fields with several correlation function approaches (continuous) or the Boolean Method (binary), and parameter vectors exhibiting spatial clustering are easily specified by the user.  
+Depends: R (>= 3.5.0)
+License: LGPL-2 | BSD_3_clause + LICENSE
+Encoding: UTF-8
+LazyData: true
+Imports:
+	car,
+	ggplot2,
+	MASS,
+	Rdpack,
+	spam (>= 2.2-0),
+	tidyverse,
+	tibble,
+	dplyr,
+	magrittr,
+	matrixcalc
+RdMacros: Rdpack
+RoxygenNote: 7.0.2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr

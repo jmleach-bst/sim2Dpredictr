@@ -1,0 +1,59 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# sim2Dpredictr
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of sim2Dpredictr is to facilitate straightforward simulation of spatially dependent predictors (continuous or binary), which may then be used to simulate continuous, binary, or count outcomes within a (generalized) linear model framework. Continuous predictors are simulated using Multivariate Normal (MVN) distributions with a focus on specific correlation structures; alternatively, one can specify conditional dependence via a precision matrix, specifically for a Conditional Autoregressive (CAR) model. Tools are included for easily constructing and taking the Cholesky decomposition of a covariance or precision matrix with either base \code{R} or the \code{R} package \code{spam}, which makes this process faster when the matrix is sparse. The Boolean Model and thresholding of MVN's are used to simulate spatially dependent binary maps. The package also includes a tool for easily specifying a parameter vector with spatially clustered non-zero elements. These simulation tools are designed for, but not limited to, testing the performance of variable selection methods when predictors are spatially correlated. 
+
+## Installation
+
+You can install the released version of sim2Dpredictr from [github](https://github.com) with:
+
+``` r
+library(remotes)
+
+install_github("jmleach-bst/sim2Dpredictr", force=T, build_vignettes=T)
+```
+
+## Example
+
+A simple demonstration is as follows; suppose each subject has a $5 \times 5$ standardized continuous-valued predictor image, and a binary outcome. We can generate a spatial cluster of non-zero parameter values with `beta_builder()`, simulate and take the Cholesky decomposition of a correlation (or covariance) matrix with `chol_s2Dp()`, and generate both the images and outcomes with `sim_Y_MVN_X()`.
+
+```{r example}
+library(sim2Dpredictr)
+# Construct spatially clusterd non-zero parameters.
+Bex <- beta_builder(row.index = c(3, 3, 4, 4), 
+                    col.index = c(3, 4, 3, 4),
+                    im.res = c(5, 5),
+                    B0 = 0, B.values = rep(1, 4))
+
+# Construct and take Cholesky decomposition of correlation matrix.
+Rex <- chol_s2Dp(corr.structure = "ar1", 
+                 im.res = c(5, 5), rho = 0.5,
+                 use.spam = TRUE)
+
+# Simulate a dataset with spatially dependent design matrix and binary outcomes.
+sim.dat <- Gauss.ex <- sim_Y_MVN_X(N = 10, B = Bex$B, 
+                                   R = Rex$R, S = Rex$S, 
+                                   dist = "binomial")
+
+sim.dat
+```
+Once the dependence framework and non-zero parameter vector is set, `sim_Y_MVN_X()` can be used to draw as many datasets as necessary, upon each of which variable selection methods are applied; summaries from each analzed dataset can be obtained and then used to evaluate variable selection performance. The documentation provides details about how to use these functions (and others) to create desired simulations, and a detailed vignette is being written to provide further guidance.
+
+
+
