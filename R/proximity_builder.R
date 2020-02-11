@@ -1,7 +1,7 @@
 #' Generate a Proximity Matrix
 #'
-#' Generates a proximity matrix. This is a more general version of \code{\link[sim2Dpredictr]{binary_adjacency}}
-#' to allow weights other than 1 for neighbors.
+#' Generates a proximity matrix where non-zero entries are the weights associated with neighbors, and
+#' zero entries are not neighbors.
 #'
 #' @param im.res A vector defining the dimension of spatial data. The first entry is the
 #' number of rows and the second  entry is the number of columns.
@@ -22,7 +22,7 @@
 #' @param print.im Allows user to print the 2D "image" matrix with index labels to visually verify that the proximity
 #'   matrix is as expected.
 #' @note Choosing \code{weight = "binary"} reduces this function to \code{\link[sim2Dpredictr]{binary_adjacency}}.
-#' In future versions \code{\link[sim2Dpredictr]{binary_adjacency}} will be deprecated.
+#' Note that \code{\link[sim2Dpredictr]{binary_adjacency}} is deprecated.
 #' @importFrom dplyr mutate
 #' @examples
 #' ## adjacency matrix with sparse structure (i.e., 2 columns) and ar1 neighborhood

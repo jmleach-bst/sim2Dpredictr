@@ -42,6 +42,7 @@ binary_adjacency <- function(im.res, neighborhood = "ar1",
                              r = NULL, h = NULL, w = NULL,
                              include.coords = FALSE,
                              print.im = FALSE){
+  .Deprecated("proximity_builder")
   # bad hack... but otherwise no "global binding"...
   nb.y <- c()
 

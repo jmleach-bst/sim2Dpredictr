@@ -45,12 +45,12 @@ neighbors are returned along with their indices.}
 matrix is as expected.}
 }
 \description{
-Generates a proximity matrix. This is a more general version of \code{\link[sim2Dpredictr]{binary_adjacency}}
-to allow weights other than 1 for neighbors.
+Generates a proximity matrix where non-zero entries are the weights associated with neighbors, and
+zero entries are not neighbors.
 }
 \note{
 Choosing \code{weight = "binary"} reduces this function to \code{\link[sim2Dpredictr]{binary_adjacency}}.
-In future versions \code{\link[sim2Dpredictr]{binary_adjacency}} will be deprecated.
+Note that \code{\link[sim2Dpredictr]{binary_adjacency}} is deprecated.
 }
 \examples{
 ## adjacency matrix with sparse structure (i.e., 2 columns) and ar1 neighborhood
