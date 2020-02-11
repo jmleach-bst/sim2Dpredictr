@@ -57,13 +57,13 @@
 #' @examples
 #'
 #' ## Define non-zero beta values
-#' Bex <- beta_builder(row.index = c(3, 3, 4, 4), col.index = c(3, 4, 3, 4),
+#' Bex <- beta_builder(row.index = c(3, 3, 4), col.index = c(3, 4, 3),
 #'                     im.res = c(5, 5),
-#'                     B0 = 0, B.values = rep(1, 4),
+#'                     B0 = 0, B.values = rep(1/3, 3),
 #'                     output.indices = FALSE)
 #' ## Simulate Datasets
 #' ## parameter values
-#' Nex = 100
+#' Nex = 10
 #' set.seed(28743)
 #'
 #' Gauss.ex <- sim_Y_Binary_X(N = Nex, B = Bex, dist = "gaussian", im.res = c(5, 5))
@@ -73,26 +73,6 @@
 #' Bin.ex <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
 #'                          dist = "binomial", print.out = TRUE)
 #' table(Bin.ex$Y)
-#'
-#' ## manual cutoff
-#' Bin.ex2 <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
-#'                           dist = "binomial",
-#'                           binomial.method = "gaussian manual",
-#'                           Y.thresh = 1.25)
-#' table(Bin.ex2$Y)
-#'
-#' ## percentile cutoff
-#' Bin.ex3 <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
-#'                           dist = "binomial",
-#'                           binomial.method = "gaussian percentile",
-#'                           Y.thresh = 0.75)
-#' table(Bin.ex3$Y)
-#'
-#' Pois.ex <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
-#'                           dist = "poisson", print.out = TRUE)
-#' mean(Pois.ex$Y)
-#' quantile(Pois.ex$Y, probs = c(0, 0.1, 0.25, 0.45, 0.5, 0.75, 0.9, 0.95, 0.99, 1))
-#' hist(Pois.ex$Y)
 #' @return A data frame where each row consists of a single subject's data.
 #' Col 1 is the outcome, Y, and each successive column contains the subject
 #' predictor values.

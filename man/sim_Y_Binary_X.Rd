@@ -133,22 +133,22 @@ Options are \code{c("gaussian", "gamma")}.}
 chosen, within which the Poisson process is used to generate the binary image.}
 
 \item{min.sa}{Only utilized when \code{sub.area = TRUE}, and
-determines the width and height of the  minimum and maximum sub-areas; e.g. if
+determines the width and height of the  minimum and maximum sub-areas; e.g., if
 \code{min.sa = c(0.1, 0.1)}, then the smallest possible random sub-area is a
 0.1 x 0.1 square.}
 
 \item{max.sa}{Only utilized when \code{sub.area = TRUE}, and
-determines the width and height of the  minimum and maximum sub-areas; e.g. if
+determines the width and height of the  minimum and maximum sub-areas; e.g., if
 \code{min.sa = c(0.1, 0.1)}, then the smallest possible random sub-area is a
 0.1 x 0.1 square.}
 
 \item{radius.bounds.min.sa}{Only utilized when \code{sub.area = TRUE}, and
-essentially specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
+specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
 This information is used to adaptively alter the bounds in between the minimum and maximum
 sub-areas.}
 
 \item{radius.bounds.max.sa}{Only utilized when \code{sub.area = TRUE}, and
-essentially specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
+specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
 This information is used to adaptively alter the bounds in between the minimum and maximum
 sub-areas.}
 
@@ -200,13 +200,13 @@ distribution can be unnaturally large.
 \examples{
 
 ## Define non-zero beta values
-Bex <- beta_builder(row.index = c(3, 3, 4, 4), col.index = c(3, 4, 3, 4),
+Bex <- beta_builder(row.index = c(3, 3, 4), col.index = c(3, 4, 3),
                     im.res = c(5, 5),
-                    B0 = 0, B.values = rep(1, 4),
+                    B0 = 0, B.values = rep(1/3, 3),
                     output.indices = FALSE)
 ## Simulate Datasets
 ## parameter values
-Nex = 100
+Nex = 10
 set.seed(28743)
 
 Gauss.ex <- sim_Y_Binary_X(N = Nex, B = Bex, dist = "gaussian", im.res = c(5, 5))
@@ -216,26 +216,6 @@ hist(Gauss.ex$Y)
 Bin.ex <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
                          dist = "binomial", print.out = TRUE)
 table(Bin.ex$Y)
-
-## manual cutoff
-Bin.ex2 <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
-                          dist = "binomial",
-                          binomial.method = "gaussian manual",
-                          Y.thresh = 1.25)
-table(Bin.ex2$Y)
-
-## percentile cutoff
-Bin.ex3 <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
-                          dist = "binomial",
-                          binomial.method = "gaussian percentile",
-                          Y.thresh = 0.75)
-table(Bin.ex3$Y)
-
-Pois.ex <- sim_Y_Binary_X(N = Nex, B = Bex, im.res = c(5, 5),
-                          dist = "poisson", print.out = TRUE)
-mean(Pois.ex$Y)
-quantile(Pois.ex$Y, probs = c(0, 0.1, 0.25, 0.45, 0.5, 0.75, 0.9, 0.95, 0.99, 1))
-hist(Pois.ex$Y)
 }
 \references{
 \insertRef{Cressie+Wikle:2011}{sim2Dpredictr}
