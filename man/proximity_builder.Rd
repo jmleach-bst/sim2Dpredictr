@@ -48,10 +48,6 @@ matrix is as expected.}
 Generates a proximity matrix where non-zero entries are the weights associated with neighbors, and
 zero entries are not neighbors.
 }
-\note{
-Choosing \code{weight = "binary"} reduces this function to \code{\link[sim2Dpredictr]{binary_adjacency}}.
-Note that \code{\link[sim2Dpredictr]{binary_adjacency}} is deprecated.
-}
 \examples{
 ## adjacency matrix with sparse structure (i.e., 2 columns) and ar1 neighborhood
 sp.ar1 <- proximity_builder(im.res = c(4, 4),

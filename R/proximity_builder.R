@@ -21,8 +21,6 @@
 #'  neighbors are returned along with their indices.
 #' @param print.im Allows user to print the 2D "image" matrix with index labels to visually verify that the proximity
 #'   matrix is as expected.
-#' @note Choosing \code{weight = "binary"} reduces this function to \code{\link[sim2Dpredictr]{binary_adjacency}}.
-#' Note that \code{\link[sim2Dpredictr]{binary_adjacency}} is deprecated.
 #' @importFrom dplyr mutate
 #' @examples
 #' ## adjacency matrix with sparse structure (i.e., 2 columns) and ar1 neighborhood
