@@ -53,28 +53,17 @@
 #'
 #' ## no "true" zeros, but gets close
 #' c.nr <- correlation_builder(corr.structure = "ar1", neighborhood = "none",
-#'                     corr.min = NULL, im.res = c(25, 25), rho = 0.5)
+#'                     corr.min = NULL, im.res = c(15, 15), rho = 0.5)
 #' length(c.nr[c.nr > 0])
 #' min(c.nr)
 #'
 #' ## set corr.min gives many zero entries; sparser structure
 #' c.r <- correlation_builder(corr.structure = "ar1", neighborhood = "none",
-#'                     corr.min = 0.01, im.res = c(25, 25), rho = 0.5)
+#'                     corr.min = 0.01, im.res = c(15, 15), rho = 0.5)
 #' ## raw number > 0
 #' length(c.r[c.r > 0])
 #' ## proportion > 0
 #' length(c.r[c.r > 0]) / length(c.nr)
-#'
-#' ## visual depiction
-#' rotate=function(x){
-#'  t(apply(x, 2, rev))
-#' }
-#'
-#' image(rotate(correlation_builder(corr.structure = "ar1",
-#'                                im.res = c(25, 25), rho = 0.9,
-#'                                 neighborhood = "round", r = 40)),
-#'      col = terrain.colors(n = 20), axes = FALSE)
-#' box()
 #' @export
 correlation_builder=function(corr.structure = "ar1", im.res,
                              corr.min = NULL, neighborhood = "none",
