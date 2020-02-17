@@ -123,7 +123,7 @@ sim_MVN_X <- function(N, mu = 0, L = NULL, R = NULL,
     L <- NULL
   }
 
-  if (class(R) == "spam.chol.NgPeyton" | class(L) == "spam.chol.NgPeyton") {
+  if ("spam.chol.NgPeyton" %in% class(R) | "spam.chol.NgPeyton" %in% class(L)) {
     use.spam <- TRUE
     if (is.null(Q) == FALSE) {
       Q <- spam::as.spam(Q)
@@ -145,24 +145,24 @@ sim_MVN_X <- function(N, mu = 0, L = NULL, R = NULL,
   # When using {spam} convert matrices to spam objects if not already.
 
   if (is.null(R) == FALSE & use.spam == TRUE) {
-    if (class(R) != "spam.chol.NgPeyton") {
+    if (!("spam.chol.NgPeyton" %in% class(R))) {
       R <- spam::as.spam(R)
     }
   }
   if (is.null(L) == FALSE & use.spam == TRUE) {
-    if (class(L) != "spam.chol.NgPeyton") {
+    if (!("spam.chol.NgPeyton" %in% class(L))) {
       L <- spam::as.spam(L)
     }
   }
 
   if (is.null(Q) == FALSE & use.spam == TRUE) {
-    if (class(Q) != "spam") {
+    if (!("spam" %in% class(Q))) {
       Q <- spam::as.spam(Q)
     }
   }
 
   if (is.null(S) == FALSE & use.spam == TRUE) {
-    if (class(S) != "spam") {
+    if (!("spam" %in% class(S))) {
       S <- spam::as.spam(S)
     }
   }
