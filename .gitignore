@@ -3,4 +3,5 @@
 .RData
 inst/doc
 README.Rmd
+NEWS.Rmd
 *.Rproj
