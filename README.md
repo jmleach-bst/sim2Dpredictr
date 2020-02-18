@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.org/jmleach-bst/sim2Dpredictr.svg?branch=master)](https://travis-ci.org/jmleach-bst/sim2Dpredictr)
 <!-- badges: end -->
 
 The goal of sim2Dpredictr is to facilitate straightforward simulation of
@@ -26,7 +28,7 @@ variable selection methods when predictors are spatially correlated.
 
 ## Installation
 
-You can install the lateset version of sim2Dpredictr from
+You can install the latest version of sim2Dpredictr from
 [github](https://github.com) with:
 
 ``` r
@@ -62,20 +64,20 @@ sim.dat <- sim2Dpredictr::sim_Y_MVN_X(N = 3, B = Bex$B,
                                       dist = "binomial")
 
 sim.dat
-#>   Y          X1         X2         X3         X4         X5         X6
-#> 1 0 -0.39191874  0.9182059  1.0311180  0.4825745  0.3058917  1.0895472
-#> 2 0 -0.06304858  0.3442283  1.4576697  0.6030263  0.9362727  0.6063007
-#> 3 0 -0.36362420 -0.4762234 -0.2710237 -0.4972280 -0.1815382 -0.6169909
-#>           X7         X8        X9 subjectID
-#> 1  0.3792901  0.4718639  1.420850         1
-#> 2  0.9165074  0.6246236  1.388025         2
-#> 3 -0.1090393 -0.3066414 -1.766956         3
+#>   Y         X1        X2        X3        X4         X5         X6         X7
+#> 1 1 0.01648842 0.5932870 2.3363894 1.1158671 -0.7113958  0.5699940 -0.1636371
+#> 2 1 0.68162682 0.6137754 0.8938886 0.5550313  1.4689111 -0.0611457  0.3572808
+#> 3 1 0.02529938 1.4692546 2.0659131 0.3617255  0.7413636  0.3820786 -0.4709804
+#>           X8         X9 subjectID
+#> 1 -0.3385803 0.70755570         1
+#> 2  0.1441915 0.39455996         2
+#> 3  1.2407625 0.06535728         3
 ```
 
 Once the dependence framework and non-zero parameter vector is set,
 `sim_Y_MVN_X()` can be used to draw as many datasets as necessary, upon
 each of which variable selection methods are applied; summaries from
-each analzed dataset can be obtained and then used to evaluate variable
+each analyzed dataset can be obtained and then used to evaluate variable
 selection performance. The documentation provides details about how to
 use these functions (and others) to create desired simulations, and a
 detailed vignette is being written to provide further guidance.

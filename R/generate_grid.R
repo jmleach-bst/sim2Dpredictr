@@ -5,7 +5,7 @@
 #'
 #' @param im.res A vector specifying the dimension/resolution of the image. The first entry is
 #'  the number of 'rows' in the lattice/image, and the second entry is the number of
-#'  'columns' in the lattic/image.
+#'  'columns' in the lattice/image.
 #' @param xlim,ylim These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
 #' It is not recommended to alter these arguments unless changing the limits has a
 #' specific practical utility.

@@ -1,4 +1,4 @@
-#' Determine and store neighbors by Euclidean Distance Contraints
+#' Determine and store neighbors by Euclidean Distance Constraints
 #'
 #' @param x,y are the row and column coordinates, respectively.
 #' @param coords A dataframe containing indices and coordinates for the image.

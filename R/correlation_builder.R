@@ -32,7 +32,7 @@
 #' @param w,h If \code{neighborhood = "rectangle"} then w and h are the number of locations
 #' to the left/right and above/below a location i that define its neighborhood. Any locations
 #' outside this neighborhood have have zero correlation with location i.
-#' @param print.all If \code{print.all = TRUE}, then prints each corrlation and allows you
+#' @param print.all If \code{print.all = TRUE}, then prints each correlation and allows you
 #' to check whether the correlations are as you intended. This option is NOT recommended
 #' for large point lattices/images.
 #' @importFrom matrixcalc is.positive.definite

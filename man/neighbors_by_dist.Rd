@@ -2,7 +2,7 @@
 % Please edit documentation in R/neighbors_by_dist.R
 \name{neighbors_by_dist}
 \alias{neighbors_by_dist}
-\title{Determine and store neighbors by Euclidean Distance Contraints}
+\title{Determine and store neighbors by Euclidean Distance Constraints}
 \usage{
 neighbors_by_dist(x, y, coords, im.res, r, print.ring = FALSE)
 }
@@ -22,7 +22,7 @@ in each ring. This argument primarily exists to allow the user to test
 whether the neighborhood structure specified is as desired.}
 }
 \description{
-Determine and store neighbors by Euclidean Distance Contraints
+Determine and store neighbors by Euclidean Distance Constraints
 }
 \note{
 This function avoids testing all points for being with a certain distance

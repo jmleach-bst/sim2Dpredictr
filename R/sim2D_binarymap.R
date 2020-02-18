@@ -7,7 +7,7 @@
 #' @inheritParams sim2D_RandSet_HPPP
 #' @param im.res A vector specifying the dimension/resolution of the image. The first entry is
 #' the number of 'rows' in the lattice/image, and the second entry is the number of
-#' 'columns' in the lattic/image.
+#' 'columns' in the lattice/image.
 #' @param store.type One of \code{c("list", "matrix")}. When \code{store.type = "list"},
 #' the output is a list where each element is a matrix defining a subject image. If
 #' \code{store.type = "matrix"}, then the images are vectorized by row and each row

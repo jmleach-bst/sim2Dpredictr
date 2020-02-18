@@ -2,7 +2,7 @@
 % Please edit documentation in R/chol_s2Dp.R
 \name{chol_s2Dp}
 \alias{chol_s2Dp}
-\title{Build and Take the Choloesky Decomposition of a Covariance Matrix}
+\title{Build and Take the Cholesky Decomposition of a Covariance Matrix}
 \usage{
 chol_s2Dp(
   matrix.type = "cov",
@@ -102,7 +102,7 @@ Cholesky decomposition is of a correlation matrix. If \code{sigma} != 1, then th
 \item{triangle}{Determine whether to output an upper (\code{triangle = "upper"}) or
 lower (\code{triangle = "lower"}) triangular matrix.}
 
-\item{print.all}{If \code{print.all = TRUE}, then prints each corrlation and allows you
+\item{print.all}{If \code{print.all = TRUE}, then prints each correlation and allows you
 to check whether the correlations are as you intended. This option is NOT recommended
 for large point lattices/images.}
 
@@ -118,7 +118,7 @@ or precision matrix, and the second element is the Cholesky factor.
 }
 \description{
 The function first builds a correlation matrix with correlation.builder, converts
-that matrix to a covariance matrix if necessary, and then takes the cholesky decomposion
+that matrix to a covariance matrix if necessary, and then takes the Cholesky decomposition
 of the matrix using either base R or the R package \code{spam}. Note that \code{spam}
 is particularly effective when the matrix is sparse.
 }

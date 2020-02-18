@@ -1,7 +1,7 @@
-#' Build and Take the Choloesky Decomposition of a Covariance Matrix
+#' Build and Take the Cholesky Decomposition of a Covariance Matrix
 #'
 #' The function first builds a correlation matrix with correlation.builder, converts
-#' that matrix to a covariance matrix if necessary, and then takes the cholesky decomposion
+#' that matrix to a covariance matrix if necessary, and then takes the Cholesky decomposition
 #' of the matrix using either base R or the R package \code{spam}. Note that \code{spam}
 #' is particularly effective when the matrix is sparse.
 #'

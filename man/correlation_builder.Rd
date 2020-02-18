@@ -56,7 +56,7 @@ outside this neighborhood have have zero correlation with location i.}
 \item{r}{If \code{neighborhood = "round"}, then if locations i,j are separated by
 distance \eqn{d \ge r}, the correlation between them is zero.}
 
-\item{print.all}{If \code{print.all = TRUE}, then prints each corrlation and allows you
+\item{print.all}{If \code{print.all = TRUE}, then prints each correlation and allows you
 to check whether the correlations are as you intended. This option is NOT recommended
 for large point lattices/images.}
 

@@ -24,9 +24,9 @@
 #' @param lambda.sd Only utilized when \code{random.lambda = TRUE}, and specifies the
 #' standard deviation in the distribution used to draw subject-specific lambda.
 #' @param prior Only utilized when \code{random.lambda = TRUE}, and specifies the
-#' distribution from which to draw the subject-specfic lambda.
+#' distribution from which to draw the subject-specific lambda.
 #' Options are \code{c("gaussian", "gamma")}.
-#' @param lambda.bound Only utlized when \code{random.lambda = TRUE}, and allows the
+#' @param lambda.bound Only utilized when \code{random.lambda = TRUE}, and allows the
 #' user to specify a lower and upper bound for the subject-specific lambda; if the
 #' randomly selected value is outside of this range, then another draw is taken. This
 #' continues until a value is selected within the specified bounds. If no bounds are

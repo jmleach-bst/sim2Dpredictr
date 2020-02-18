@@ -41,7 +41,7 @@ of actual parameter values, or a binary vector indicating non-zero status.}
 \item{B.incl.B0}{If \code{B.incl.B0 = TRUE} then the first entry should be the intercept,
 B0. \code{B.incl.B0 = FALSE} indicates that the first entry of B is not an intercept.}
 
-\item{full.summary}{If \code{full.summary = TRUE} then the total numbers of rejectons,
+\item{full.summary}{If \code{full.summary = TRUE} then the total numbers of rejections,
 false positives, true positives, and non-zero parameters are output along with FDR,
 FWER, and Power; otherwise, only FDR, FWER, and Power are output.}
 }

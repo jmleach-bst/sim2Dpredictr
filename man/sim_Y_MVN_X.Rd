@@ -34,13 +34,13 @@ must equal \code{p + 1 = n.row * n.col + 1}; e.g. for normal outcomes
 \eqn{Y = XB + e} with \code{Y} a scalar outcome and \code{e} the random error.}
 
 \item{L}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
-and are the Choleskly factor(s) of the desired covariance matrix for the MVN.
+and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
 Obtain \code{L} or \code{R} via \code{chol_s2Dp()} with settings
 \code{triangle = "lower"} or \code{triangle = "upper"}, respectively.
 Specify either \code{L} or \code{R}, but NOT both.}
 
 \item{R}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
-and are the Choleskly factor(s) of the desired covariance matrix for the MVN.
+and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
 Obtain \code{L} or \code{R} via \code{chol_s2Dp()} with settings
 \code{triangle = "lower"} or \code{triangle = "upper"}, respectively.
 Specify either \code{L} or \code{R}, but NOT both.}
@@ -107,7 +107,7 @@ in which to divide the data.}
 \code{X.category.type = c("percentile", "manual")}.
 If \code{X.category.type = "percentile"} then the data are divided into
 percentiles based on \code{X.num.categories}; e.g. if \code{X.num.categories = 4}
-then the values are divided into quartiles, and values in Q1 equal 0, betwen Q1
+then the values are divided into quartiles, and values in Q1 equal 0, between Q1
 and Q2 equal 1, between Q2 and Q3 equal 2, and greater than Q3 equal 3.
 If \code{X.category.type = "manual"} then specify the cutoff points with
 \code{X.manual.thresh}.}
@@ -121,7 +121,7 @@ equal \code{X.num.categories - 1}.}
 
 \item{X.cat.names}{A vector of category names. If \code{X.cat.names = NULL} then
 then the initial integers assigned are left as the values; the names in
-\code{X.cat.names} are assinged in ascending order.}
+\code{X.cat.names} are assigned in ascending order.}
 
 \item{print.out}{If \code{print.out = TRUE} then print the following for
  each subject, indexed y: \itemize{

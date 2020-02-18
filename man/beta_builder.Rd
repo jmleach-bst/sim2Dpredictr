@@ -34,7 +34,7 @@ respectively, of the peak parameter value.}
 
 \item{im.res}{A vector specifying the dimension/resolution of the image. The first entry is
 the number of 'rows' in the lattice/image, and the second entry is the number of
-'columns' in the lattic/image.}
+'columns' in the lattice/image.}
 
 \item{B0}{is the "true" intercept value; default is 0.}
 
@@ -46,12 +46,12 @@ parameters decay smoothly by distance.}
 
 \item{index.type}{is one of index.type = c("manual", "rectangle", "ellipse", "decay")
 \itemize{
-    \item \code{index.type = "manual"} uses row.index and col.index arguemnts to specify
+    \item \code{index.type = "manual"} uses row.index and col.index arguments to specify
                   manually selected non-zero locations. This setting is good
                   for irregular shaped regions.
     \item \code{index.type = "rectangle"} uses row.index and col.index arguments to
                   specify a rectangular region of non-zero parameters.
-    \item \code{index.type = "ellipse"} uses \code{w} and \code{h} argmuents to specify
+    \item \code{index.type = "ellipse"} uses \code{w} and \code{h} arguments to specify
                   elliptical region of non-zero parameters
     \item \code{index.type = "decay"} allows the user to specify a peak location with
           \code{row.index} and \code{col.index}, as with \code{index.type = "ellipse"}.
