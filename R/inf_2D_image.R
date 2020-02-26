@@ -118,12 +118,12 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
     rej.mat <- matrix(rejections,
                       nrow = im.res[1],
                       ncol = im.res[2],
-                      byrow = T)
-    if ( is.null(B) == T ) {
+                      byrow = TRUE)
+    if ( is.null(B) == TRUE ) {
       if (plot.title == FALSE) {
-        image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = F)
+        image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = FALSE)
       } else {
-        image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = F,
+        image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = FALSE,
               main = "Pink Indicates Rejected Locations")
       }
       box()
@@ -155,7 +155,7 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
       else{
         image(rotate(B.mat),
               col = c("white", rev(terrain.colors(n = n.colors))),
-                      axes = F)
+                      axes = FALSE)
         box()
         grid(nx = im.res[1], ny = im.res[2],
              col = grid.color, lty = 1)
@@ -166,7 +166,7 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
   if( (is.null(rejections) == FALSE) & (is.null(B) == FALSE) ) {
     im.mat <- matrix(0, nrow = im.res[1],
                      ncol = im.res[2],
-                     byrow = T)
+                     byrow = TRUE)
     # FN
     im.mat[(rej.mat == 0) & (B.mat != 0)] <- 1
     # FP
@@ -181,10 +181,10 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
       im.col <- c("white", "#E69F00", "#D55E00", "#009E73")
     }
     if (plot.title == FALSE) {
-      image(rotate(im.mat), col = im.col, axes = F)
+      image(rotate(im.mat), col = im.col, axes = FALSE)
     } else {
       image(rotate(im.mat), col = im.col,
-            axes = F, main = "Hypothesis Testing Results")
+            axes = FALSE, main = "Hypothesis Testing Results")
     }
     box()
     grid(nx = im.res[1], ny = im.res[2], col = "black", lty = 1)
