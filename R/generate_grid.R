@@ -9,6 +9,7 @@
 #' @param xlim,ylim These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
 #' It is not recommended to alter these arguments unless changing the limits has a
 #' specific practical utility.
+#' @return A data frame whose first column is x-coordinates and whose second column is y-coordinates.
 #' @export
 generate_grid <- function(im.res, xlim = c(0, 1), ylim = c(0, 1)) {
   x.length <- xlim[2] - xlim[1]

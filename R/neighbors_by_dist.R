@@ -9,7 +9,8 @@
 #' with corresponding information regarding the number of neighbors present
 #' in each ring. This argument primarily exists to allow the user to test
 #' whether the neighborhood structure specified is as desired.
-#'
+#' @return A tibble whose first column contains x indices, second column contains y indices, and
+#' third column denotes the current ring about a location.
 #' @note  This function avoids testing all points for being with a certain distance
 #'  in order to determine neighbor status of a given point by progressively widening
 #'  a box around the point. Each iteration widens the box by an extra ring, and we

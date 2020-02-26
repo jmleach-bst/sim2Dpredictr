@@ -65,7 +65,7 @@
 #' @param output.indices If \code{output.indices = TRUE}, then the first element of the
 #' returned list contains the indices for the non-zero parameter locations (Default).
 #' If \code{output.indices = FALSE}, then only the parameter vector is returned.
-#' @return A list containing (1) indices for the locations of "true" non-zero parameters,
+#' @return A 2-element list containing (1) indices for the locations of "true" non-zero parameters,
 #' and (2) a parameter vector.
 #' @note The order of the parameters is by row. That is, if the lattice/image is 4x4,
 #' then parameters 1-4 make up the first row, 5-8 then second, and so forth.

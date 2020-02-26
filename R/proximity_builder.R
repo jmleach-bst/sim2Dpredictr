@@ -21,6 +21,7 @@
 #'  neighbors are returned along with their indices.
 #' @param print.im Allows user to print the 2D "image" matrix with index labels to visually verify that the proximity
 #'   matrix is as expected.
+#' @return A (proximity) matrix.
 #' @importFrom dplyr mutate
 #' @examples
 #' ## adjacency matrix with sparse structure (i.e., 2 columns) and ar1 neighborhood

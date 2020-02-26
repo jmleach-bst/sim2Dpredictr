@@ -12,6 +12,7 @@
 #' the output is a list where each element is a matrix defining a subject image. If
 #' \code{store.type = "matrix"}, then the images are vectorized by row and each row
 #' of the output matrix contains an image vector for a single subject.
+#' @return A list; each element is a matrix of zeroes and ones.
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{Cressie+Wikle:2011}{sim2Dpredictr}

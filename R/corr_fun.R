@@ -33,6 +33,7 @@
 #' @param w,h If \code{neighborhood = "rectangle"} then w and h are the number of locations
 #' to the left/right and above/below a location i that define its neighborhood. Any locations
 #' outside this neighborhood have have zero correlation with location i.
+#' @return A single element vector containing the correlation between spatial locations with indices (i, j) and (k, v).
 #' @examples
 #' ## examples
 #' corr_fun(corr.structure = "ar1", im.res = c(3, 3), rho = 0.5,

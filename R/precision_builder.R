@@ -33,6 +33,7 @@
 #' \eqn{N(0, [diag(tau^2)(D - alpha W)] ^ {-1})} and all neighbors are weighted 1. When weights other than 1 are desired,
 #' the joint distribution is \eqn{N(0, [diag(tau^2) D (I - alpha D^{-1}W)] ^ {-1})}, e.g. as in
 #' \insertCite{Jin+Carlin+Banerjee:2005}{sim2Dpredictr}.
+#' @return A (precision) matrix.
 #' @examples
 #'
 #' precision_builder(im.res = c(5, 5), tau = 1, alpha = 0.75,

@@ -4,7 +4,7 @@
 #' 'event' locations, about which a circle of random radius is 'drawn'. The union
 #' of the circles defines ultimately defines the set.
 #'
-#' @return The output is a dataframe containing subject ID, x-coordinates, y-coordinates,
+#' @return A dataframe with columns for subject ID, x-coordinates, y-coordinates,
 #' and associated radii.
 #'
 #' @param xlim,ylim These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
