@@ -3,12 +3,12 @@ Title: Simulate Outcomes Using Spatially Dependent Design Matrices
 Version: 0.1.0
 Authors@R: person("Justin", "Leach", email = "jleach@uab.edu", role = c("aut", "cre", "cph"))
 Description: Provides tools for simulating spatially dependent predictors (continuous or binary),
- which are used to generate scalar outcomes in a (generalized) linear model framework. Continuous
- predictors are generated using traditional Multivariate Normal Distributions or Gauss Markov Random
- Fields with several correlation function approaches (see Rue (2001) <doi:10.1111/1467-9868.00288>
- and Furrer and Sain (2010) <doi:10.18637/jss.v036.i10>), while binary predictors are generated using
- the Boolean Method (see Cressie and Wikle (2011) <doi:10.1111/j.1538-4632.2012.00859.x>). Parameter
- vectors exhibiting spatial clustering can also be easily specified by the user.  
+    which are used to generate scalar outcomes in a (generalized) linear model framework. Continuous
+    predictors are generated using traditional Multivariate Normal Distributions or Gauss Markov Random
+    Fields with several correlation function approaches (e.g., see Rue (2001) <doi:10.1111/1467-9868.00288>
+    and Furrer and Sain (2010) <doi:10.18637/jss.v036.i10>), while binary predictors are generated using
+    the Boolean Method (see Cressie and Wikle (2011, ISBN: 978-0-471-69274-4)). Parameter vectors 
+	exhibiting spatial clustering can also be easily specified by the user.  
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
