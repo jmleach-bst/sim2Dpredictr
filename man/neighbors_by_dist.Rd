@@ -21,6 +21,10 @@ with corresponding information regarding the number of neighbors present
 in each ring. This argument primarily exists to allow the user to test
 whether the neighborhood structure specified is as desired.}
 }
+\value{
+A tibble whose first column contains x indices, second column contains y indices, and
+third column denotes the current ring about a location.
+}
 \description{
 Determine and store neighbors by Euclidean Distance Constraints
 }

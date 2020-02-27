@@ -62,6 +62,9 @@ distance \eqn{d \ge r}, the correlation between them is zero.}
 \item{i, j, k, v}{These are the coordinates for the two locations. Location 1 has coordinates
 (i, j) and location 2 has coordinates (k, v).}
 }
+\value{
+A single element vector containing the correlation between spatial locations with indices (i, j) and (k, v).
+}
 \description{
 This is primarily for use within correlation builder, and may be altered/expanded to
 handle more complicated correlation functions if desired.

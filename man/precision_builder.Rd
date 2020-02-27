@@ -52,6 +52,9 @@ outside this neighborhood are conditionally independent of the specified locatio
 
 \item{digits.Q}{Determines the number of digits to round entries in the precision matrix. Default is 10.}
 }
+\value{
+A (precision) matrix.
+}
 \description{
 This function constructs the precision matrix for a Conditional Autoregression (CAR).
 }

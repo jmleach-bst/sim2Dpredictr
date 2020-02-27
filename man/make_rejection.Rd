@@ -20,6 +20,9 @@ the upper or lower threshold needed for the 2-tailed test.}
 \item{test.statistic}{A vector of test statistics; e.g., t-statistics or p-values that
 are used to determine whether or not to reject the null hypothesis.}
 }
+\value{
+A vector of hypothesis testing rejection indicators, where 1 indicates a rejection and 0 otherwise.
+}
 \description{
 Determine rejections
 }

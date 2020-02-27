@@ -44,6 +44,9 @@ neighbors are returned along with their indices.}
 \item{print.im}{Allows user to print the 2D "image" matrix with index labels to visually verify that the proximity
 matrix is as expected.}
 }
+\value{
+A (proximity) matrix.
+}
 \description{
 Generates a proximity matrix where non-zero entries are the weights associated with neighbors, and
 zero entries are not neighbors.

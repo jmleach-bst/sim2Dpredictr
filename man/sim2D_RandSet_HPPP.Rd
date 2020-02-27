@@ -81,7 +81,7 @@ and shows iterations for re-drawing when the randomly selected intensity is outs
 the specified bounds.}
 }
 \value{
-The output is a dataframe containing subject ID, x-coordinates, y-coordinates,
+A dataframe with columns for subject ID, x-coordinates, y-coordinates,
 and associated radii.
 }
 \description{

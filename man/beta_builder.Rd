@@ -99,7 +99,7 @@ returned list contains the indices for the non-zero parameter locations (Default
 If \code{output.indices = FALSE}, then only the parameter vector is returned.}
 }
 \value{
-A list containing (1) indices for the locations of "true" non-zero parameters,
+A 2-element list containing (1) indices for the locations of "true" non-zero parameters,
 and (2) a parameter vector.
 }
 \description{

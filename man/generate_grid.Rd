@@ -15,6 +15,9 @@ the number of 'rows' in the lattice/image, and the second entry is the number of
 It is not recommended to alter these arguments unless changing the limits has a
 specific practical utility.}
 }
+\value{
+A data frame whose first column is x-coordinates and whose second column is y-coordinates.
+}
 \description{
 Input the limits of a 2D space and the desired image resolution, then
 the function outputs the appropriate grid/lattice coordinates.

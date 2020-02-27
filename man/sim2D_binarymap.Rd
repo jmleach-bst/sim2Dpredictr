@@ -125,6 +125,9 @@ the output is a list where each element is a matrix defining a subject image. If
 \code{store.type = "matrix"}, then the images are vectorized by row and each row
 of the output matrix contains an image vector for a single subject.}
 }
+\value{
+A list; each element is a matrix of zeroes and ones.
+}
 \description{
 Use a Homogenous Poisson Process to generate random "events", a uniform distribution
 to generate circles of random radii about the events, and take the union to obtain
