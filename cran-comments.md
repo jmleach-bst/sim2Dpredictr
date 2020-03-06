@@ -9,6 +9,8 @@ This is a resubmission. In this version I have:
 
 * Ensured all .Rd files contain \value.
 
+* Ensured that only names, sentence beginnings, and abbreviations are capitalized in the description of the DESCRIPTION file.
+
 ## Test environments
 * local Windows 10, R 3.6.2
 * Ubuntu Xenial 16.04 (on travis-cl: oldrel and release)
