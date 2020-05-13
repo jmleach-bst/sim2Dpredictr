@@ -7,6 +7,7 @@
 
 [![Travis build
 status](https://travis-ci.org/jmleach-bst/sim2Dpredictr.svg?branch=master)](https://travis-ci.org/jmleach-bst/sim2Dpredictr)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/sim2Dpredictr)](https://cran.r-project.org/package=sim2Dpredictr)
 <!-- badges: end -->
 
 The goal of sim2Dpredictr is to facilitate straightforward simulation of
@@ -27,6 +28,13 @@ tools are designed for, but not limited to, testing the performance of
 variable selection methods when predictors are spatially correlated.
 
 ## Installation
+
+The cleaned up version is available on
+[CRAN](https://cran.r-project.org/package=sim2Dpredictr):
+
+``` r
+install.packages("sim2Dpredictr")
+```
 
 You can install the latest version of sim2Dpredictr from
 [github](https://github.com) with:
@@ -64,14 +72,14 @@ sim.dat <- sim2Dpredictr::sim_Y_MVN_X(N = 3, B = Bex$B,
                                       dist = "binomial")
 
 sim.dat
-#>   Y         X1        X2        X3        X4         X5         X6         X7
-#> 1 1 0.01648842 0.5932870 2.3363894 1.1158671 -0.7113958  0.5699940 -0.1636371
-#> 2 1 0.68162682 0.6137754 0.8938886 0.5550313  1.4689111 -0.0611457  0.3572808
-#> 3 1 0.02529938 1.4692546 2.0659131 0.3617255  0.7413636  0.3820786 -0.4709804
-#>           X8         X9 subjectID
-#> 1 -0.3385803 0.70755570         1
-#> 2  0.1441915 0.39455996         2
-#> 3  1.2407625 0.06535728         3
+#>   Y         X1         X2         X3        X4         X5         X6        X7
+#> 1 0  1.1786151 -0.2661864 -1.5314784 0.2846413 -0.1856100  0.4776866 0.2602763
+#> 2 0 -0.4664315 -0.8259383 -1.3538080 0.1751565 -1.4733417 -0.8754491 0.6765135
+#> 3 1  1.0768827  2.3713662  0.7175469 1.4566237  0.7241528  0.7297517 1.8309959
+#>           X8        X9 subjectID
+#> 1  0.3592724 0.5775858         1
+#> 2 -1.0393505 0.6504225         2
+#> 3 -1.5098455 1.7212279         3
 ```
 
 Once the dependence framework and non-zero parameter vector is set,
