@@ -14,7 +14,9 @@ inf_2D_image(
   grid.color = "grey",
   n.colors = length(unique(B)),
   B.incl.B0 = TRUE,
-  plot.title = TRUE
+  plot.title = TRUE,
+  manual.title = NULL,
+  title.size = 1
 )
 }
 \arguments{
@@ -53,6 +55,12 @@ B0. \code{B.incl.B0 = FALSE} indicates that the first entry of B is not an inter
 
 \item{plot.title}{When \code{plot.title = TRUE} a title accompanies the output graph, and
 \code{plot.title = FALSE} suppresses the title.}
+
+\item{manual.title}{When \code{plot.title = TRUE}, use \code{manual.title} to specify 
+a title manually.}
+
+\item{title.size}{Specifies the size of the title text. This is based on \code{cex.main}
+within the \code{image()} function. Default is 1.}
 }
 \value{
 An image depicting the spatial extent of some image characteristic.

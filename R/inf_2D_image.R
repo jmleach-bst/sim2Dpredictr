@@ -17,6 +17,10 @@
 #' the ideal setting for specific situations.
 #' @param plot.title When \code{plot.title = TRUE} a title accompanies the output graph, and
 #' \code{plot.title = FALSE} suppresses the title.
+#' @param manual.title When \code{plot.title = TRUE}, use \code{manual.title} to specify 
+#' a title manually.
+#' @param title.size Specifies the size of the title text. This is based on \code{cex.main}
+#' within the \code{image()} function. Default is 1.
 #' @importFrom grDevices terrain.colors
 #' @importFrom graphics box grid image legend
 #' @note If both \code{rejections} and \code{B} are specified then the function
@@ -97,7 +101,8 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
                          test.statistic = NULL, reject.threshold = NULL,
                          binarize.B = TRUE, grid.color = "grey",
                          n.colors = length(unique(B)),
-                         B.incl.B0 = TRUE, plot.title = TRUE) {
+                         B.incl.B0 = TRUE, plot.title = TRUE,
+                         manual.title = NULL, title.size = 1) {
 
   # otherwise the images are screwy-looking
   rotate = function(x){
@@ -123,8 +128,16 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
       if (plot.title == FALSE) {
         image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = FALSE)
       } else {
-        image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = FALSE,
-              main = "Pink Indicates Rejected Locations")
+        if (is.null(manual.title) == TRUE) {
+          image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = FALSE,
+                main = "Pink Indicates Rejected Locations",
+                cex.main = title.size)
+        } else {
+          image(rotate(rej.mat), col = c("white", "#CC79A7"), axes = FALSE,
+                main = manual.title, 
+                cex.main = title.size)
+        }
+        
       }
       box()
       grid(nx = im.res[1], ny = im.res[2],
@@ -145,17 +158,32 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
         if (plot.title == FALSE) {
           image(rotate(B.mat), col = c("white", "#56B4E9"), axes = FALSE)
         } else {
-          image(rotate(B.mat), col = c("white", "#56B4E9"), axes = FALSE,
-                main = "Blue Indicates Non-Zero Parameter Locations")
+          if (is.null(manual.title == TRUE)) {
+            image(rotate(B.mat), col = c("white", "#56B4E9"), axes = FALSE,
+                  main = "Blue Indicates Non-Zero Parameter Locations",
+                  cex.main = title.size)
+          } else {
+            image(rotate(B.mat), col = c("white", "#56B4E9"), axes = FALSE,
+                  main = manual.title,
+                  cex.main = title.size)
+          }
         }
         box()
         grid(nx = im.res[1], ny = im.res[2],
              col = grid.color, lty = 1)
       }
       else{
-        image(rotate(B.mat),
-              col = c("white", rev(terrain.colors(n = n.colors))),
-                      axes = FALSE)
+        if (is.null(manual.title) == TRUE) {
+          image(rotate(B.mat),
+                col = c("white", rev(terrain.colors(n = n.colors))),
+                axes = FALSE)
+        } else {
+          image(rotate(B.mat),
+                col = c("white", rev(terrain.colors(n = n.colors))),
+                axes = FALSE,
+                main = manual.title,
+                cex.main = title.size)
+        }
         box()
         grid(nx = im.res[1], ny = im.res[2],
              col = grid.color, lty = 1)
@@ -183,15 +211,21 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
     if (plot.title == FALSE) {
       image(rotate(im.mat), col = im.col, axes = FALSE)
     } else {
-      image(rotate(im.mat), col = im.col,
-            axes = FALSE, main = "Hypothesis Testing Results")
+      if (is.null(manual.title)) {
+        image(rotate(im.mat), col = im.col,
+              axes = FALSE, 
+              main = "Hypothesis Testing Results",
+              cex.main = title.size)
+      } else {
+        image(rotate(im.mat), col = im.col,
+              axes = FALSE, main = manual.title,
+              cex.main = title.size)
+      }
     }
     box()
     grid(nx = im.res[1], ny = im.res[2], col = "black", lty = 1)
     legend("right", legend = c("TN", "FN", "FP", "TP"),
            fill = c("white", "#E69F00", "#D55E00", "#009E73"))
   }
-
-
 }
 
