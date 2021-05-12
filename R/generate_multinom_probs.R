@@ -12,6 +12,19 @@
 #' @return A matrix containing subject-specific probabilities for each category of the
 #' multinomial distribution. The number of rows equals \code{nrow(X)} and the number of 
 #' columns equals \code{V}. 
+#' @examples 
+#' ## number of categories
+#' vt <- 3
+#' 
+#' ## covariate values
+#' xt <- matrix(rnorm(10 * 2), ncol = 2, nrow = 10)
+#' 
+#' ## list of parameter vectors
+#' bt <- list(b1 = c(1, 0.25, -0.25),
+#'            b2 = c(-0.5, 0.15, 0.15))
+#'
+#' ## subject specific probabilities for each category
+#' generate_multinom_probs(V = vt, X = xt, B = bt)
 #' 
 #' @export 
 generate_multinom_probs <- function(V = NULL, B = NULL, X = NULL) {
