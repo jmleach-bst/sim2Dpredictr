@@ -23,7 +23,8 @@ sim2D_binarymap(
   print.subj.sa = FALSE,
   print.lambda = FALSE,
   print.iter = FALSE,
-  store.type = "list"
+  store.type = "list",
+  output.randset = FALSE
 )
 }
 \arguments{
@@ -120,10 +121,15 @@ only used when \code{random.lambda = TRUE} and \code{is.null(lambda.bound) = FAL
 and shows iterations for re-drawing when the randomly selected intensity is outside
 the specified bounds.}
 
-\item{store.type}{One of \code{c("list", "matrix")}. When \code{store.type = "list"},
+\item{store.type}{One of \code{c("list", "matrix", "all")}. When \code{store.type = "list"},
 the output is a list where each element is a matrix defining a subject image. If
 \code{store.type = "matrix"}, then the images are vectorized by row and each row
 of the output matrix contains an image vector for a single subject.}
+
+\item{output.randset}{Logical. When \code{TRUE}, stores the data frame of original draws from
+the HPPP and and random radii from \code{sim2D_RandSet_HPPP()}. This data frame is stored in the
+first element of the output list named \code{randset}. The second element of the output list is a 
+list/matrix of the final subject images depending on \code{store.type} and named \code{images}.}
 }
 \value{
 A list; each element is a matrix of zeroes and ones.

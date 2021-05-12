@@ -56,9 +56,9 @@
 #' \insertRef{Cressie+Wikle:2011}{sim2Dpredictr}
 #' @export
 sim2D_RandSet_HPPP <- function(N, xlim = c(0, 1), ylim = c(0, 1),
-                               radius.bounds = c(0.05, 0.15),
+                               radius.bounds = c(0.02, 0.1),
                                lambda = 50, lambda.sd = 10, lambda.bound = NULL,
-                               prior = "gamma", random.lambda = FALSE, sub.area = TRUE,
+                               prior = "gamma", random.lambda = FALSE, sub.area = FALSE,
                                min.sa = c(0.1, 0.1), max.sa = c(0.3, 0.3),
                                radius.bounds.min.sa = c(0.02, 0.05),
                                radius.bounds.max.sa = c(0.08, 0.15),

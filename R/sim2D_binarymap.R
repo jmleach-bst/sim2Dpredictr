@@ -8,10 +8,14 @@
 #' @param im.res A vector specifying the dimension/resolution of the image. The first entry is
 #' the number of 'rows' in the lattice/image, and the second entry is the number of
 #' 'columns' in the lattice/image.
-#' @param store.type One of \code{c("list", "matrix")}. When \code{store.type = "list"},
+#' @param store.type One of \code{c("list", "matrix", "all")}. When \code{store.type = "list"},
 #' the output is a list where each element is a matrix defining a subject image. If
 #' \code{store.type = "matrix"}, then the images are vectorized by row and each row
-#' of the output matrix contains an image vector for a single subject.
+#' of the output matrix contains an image vector for a single subject. 
+#' @param output.randset Logical. When \code{TRUE}, stores the data frame of original draws from
+#' the HPPP and and random radii from \code{sim2D_RandSet_HPPP()}. This data frame is stored in the
+#' first element of the output list named \code{randset}. The second element of the output list is a 
+#' list/matrix of the final subject images depending on \code{store.type} and named \code{images}. 
 #' @return A list; each element is a matrix of zeroes and ones.
 #' @importFrom Rdpack reprompt
 #' @references
@@ -46,7 +50,7 @@ sim2D_binarymap <- function(N, xlim = c(0, 1), ylim = c(0, 1), im.res,
                             radius.bounds.max.sa = c(0.08, 0.15),
                             print.subj.sa = FALSE, print.lambda = FALSE,
                             print.iter = FALSE,
-                            store.type = "list") {
+                            store.type = "list", output.randset = FALSE) {
 
   # generate the random set
   rs <- sim2D_RandSet_HPPP(xlim = xlim, ylim = ylim, N = N, radius.bounds = radius.bounds,
@@ -79,6 +83,10 @@ sim2D_binarymap <- function(N, xlim = c(0, 1), ylim = c(0, 1), im.res,
       out[i, ] <- ws$in.set
     }
   }
-
-  return(out)
+  
+  if (output.randset == TRUE) {
+    return(list(randset = rs, images = out))
+  } else {
+    return(out)
+  }
 }
