@@ -3,10 +3,13 @@
 #' N spatially correlated design vectors are simulated from an MVN. These
 #' design vectors are used to then simulate scalar outcomes that have
 #' one of Gaussian, Binomial, or Poisson distributions.
-#' @inheritParams sim_MVN_X
+#' @inheritParams sim_MVN_X 
 #' @param B A vector parameter values; i.e. "betas". Note that \code{length(B)}
 #' must equal \code{p + 1 = n.row * n.col + 1}; e.g. for normal outcomes
 #' \eqn{Y = XB + e} with \code{Y} a scalar outcome and \code{e} the random error.
+#' Note that when \code{dist = "multinomial"} then \code{B} should be a list with
+#' length equal to \code{V - 1}, i.e., should contain parameter values associated
+#' with all categories except the reference category.
 #' @param rand.err A vector for the random error standard deviation when \code{dist = "gaussian"},
 #' or thresholding is used to obtain non-Normal draws. Must have length 1 or length N.
 #' @param dist The distribution of the scalar outcome.
@@ -17,9 +20,13 @@
 #'     using \code{rbinom()} when \code{binary.method = "traditional"}. If
 #'     \code{binary.method = "gaussian"}, then simulation is based on a
 #'     cutoff using \code{binary.cutoff}.
+#'     \item \code{dist = "multinomial"} is drawn from \code{sample()} using probabilities
+#'     generated based on Chapter 6.1.3 of Agresti (2007). Threshold-based approaches are not
+#'     currently supported.
 #'     \item \code{dist = "poisson"} is drawn from \eqn{Poisson(XB)} using
 #'     \code{rpois()}.
 #' }
+#' @param V A numeric value stating the number of categories desired when \code{dist = "multinomial"}.
 #' @param threshold.method One of \code{"none", "manual", "percentile", "round"}.
 #' When \code{"none"} draws from Binomial or Poisson distributions are taken subject-wise
 #' using base \code{R} functions. For the remaining options, draws are first taken from a
@@ -113,11 +120,14 @@
 #' \insertRef{Ripley:1987}{sim2Dpredictr}
 #'
 #' \insertRef{Rue:2001}{sim2Dpredictr}
+#' 
+#' \insertRef{Agresti:2007}{sim2Dpredictr}
 #' @export
 sim_Y_MVN_X = function(N, B, L = NULL, R = NULL,
                        S = NULL, Q = NULL, use.spam = TRUE,
                        mu = 0, rand.err = 1,
-                       dist = "gaussian", incl.subjectID = TRUE,
+                       dist = "gaussian", V = NULL,
+                       incl.subjectID = TRUE,
                        threshold.method = "none",
                        Y.thresh = NULL,
                        X.categorical = FALSE, X.num.categories = 2,
@@ -251,6 +261,18 @@ sim_Y_MVN_X = function(N, B, L = NULL, R = NULL,
           Y[Y0 <= perc.ct] <- 0
         }
       }
+    }
+  }
+  
+  if (dist == "multinomial") {
+    Y <- c()
+    
+    # generate subject-specific probabilities
+    p.mn <- generate_multinom_probs(V = V, B = B, X = Xn)
+    
+    Y <- c()
+    for (i in 1:nrow(p.mn)) {
+      Y[i] <-  sample(x = 1:V, size = 1, p = p.mn[i, ])
     }
   }
 
