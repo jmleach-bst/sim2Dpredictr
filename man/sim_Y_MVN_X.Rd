@@ -15,6 +15,7 @@ sim_Y_MVN_X(
   mu = 0,
   rand.err = 1,
   dist = "gaussian",
+  V = NULL,
   incl.subjectID = TRUE,
   threshold.method = "none",
   Y.thresh = NULL,
@@ -31,7 +32,10 @@ sim_Y_MVN_X(
 
 \item{B}{A vector parameter values; i.e. "betas". Note that \code{length(B)}
 must equal \code{p + 1 = n.row * n.col + 1}; e.g. for normal outcomes
-\eqn{Y = XB + e} with \code{Y} a scalar outcome and \code{e} the random error.}
+\eqn{Y = XB + e} with \code{Y} a scalar outcome and \code{e} the random error.
+Note that when \code{dist = "multinomial"} then \code{B} should be a list with
+length equal to \code{V - 1}, i.e., should contain parameter values associated
+with all categories except the reference category.}
 
 \item{L}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
 and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
@@ -77,9 +81,14 @@ or thresholding is used to obtain non-Normal draws. Must have length 1 or length
     using \code{rbinom()} when \code{binary.method = "traditional"}. If
     \code{binary.method = "gaussian"}, then simulation is based on a
     cutoff using \code{binary.cutoff}.
+    \item \code{dist = "multinomial"} is drawn from \code{sample()} using probabilities
+    generated based on Chapter 6.1.3 of Agresti (2007). Threshold-based approaches are not
+    currently supported.
     \item \code{dist = "poisson"} is drawn from \eqn{Poisson(XB)} using
     \code{rpois()}.
 }}
+
+\item{V}{A numeric value stating the number of categories desired when \code{dist = "multinomial"}.}
 
 \item{incl.subjectID}{When \code{incl.subjectID = TRUE} a column of subject indices
 is generated.}
@@ -213,4 +222,6 @@ hist(Pois.ex$Y)
 \insertRef{Ripley:1987}{sim2Dpredictr}
 
 \insertRef{Rue:2001}{sim2Dpredictr}
+
+\insertRef{Agresti:2007}{sim2Dpredictr}
 }
