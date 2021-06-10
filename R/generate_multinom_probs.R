@@ -8,7 +8,7 @@
 #' @param B A list, each element of which contains a parameter vector. The list should
 #' have length \code{V - 1}. 
 #' @param X A matrix, each row of which contains subject covariate/predictor values. 
-#' @param X.incl.X0 Logical. When \code{TRUE}, \code{X} contains a column of 1's for
+#' @param X.incl.X0 Logical. When \code{TRUE}, \code{X} should contain column of 1's for
 #' the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.
 #' @return A matrix containing subject-specific probabilities for each category of the
 #' multinomial distribution. The number of rows equals \code{nrow(X)} and the number of 
@@ -35,16 +35,28 @@ generate_multinom_probs <- function(V = NULL, B = NULL, X = NULL,
     stop("Length of B must equal V - 1")
   }
   
-  for (b in 1:length(B)) {
-    if (ncol(X) != length(B[[b]]) - 1) {
-      stop("X and B should have the same number of predictors.")
-    }
+  if (X.incl.X0 == TRUE & any(X[, 1] != 1)) {
+    stop("1st column of X does not contain all 1's. Did you intend X.incl.X0 = FALSE?")
+  }
+  
+  if (X.incl.X0 == FALSE & all(X[, 1] == 1)) {
+    warning("1st column of X contains all 1's. Did you intend X.incl.X0 = TRUE?")
   }
   
   if (X.incl.X0 == FALSE) {
     X <- cbind(1, X)
   }
   
+  for (b in 1:length(B)) {
+    if (ncol(X) != length(B[[b]])) {
+      stop("X and B should have the same number of predictors.")
+    }
+  }
+  
+  if (is.matrix(X) == FALSE) {
+    warning("X should be matrix. Attempting conversion.")
+    X <- as.matrix(X)
+  }
   
   # store exp(XB) for each of v = 1, ..., V
   exp.v.old <- NULL

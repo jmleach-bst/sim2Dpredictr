@@ -14,7 +14,7 @@ have length \code{V - 1}.}
 
 \item{X}{A matrix, each row of which contains subject covariate/predictor values.}
 
-\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} contains a column of 1's for
+\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} should contain column of 1's for
 the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.}
 }
 \value{

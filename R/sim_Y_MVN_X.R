@@ -279,7 +279,7 @@ sim_Y_MVN_X = function(N, B, L = NULL, R = NULL,
     
     Y <- c()
     for (i in 1:nrow(p.mn)) {
-      Y[i] <-  sample(x = 1:V, size = 1, p = p.mn[i, ])
+      Y[i] <-  sample(x = 1:V, size = 1, prob = p.mn[i, ])
     }
   }
 
