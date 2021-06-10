@@ -7,8 +7,9 @@
 #' @param V A numeric value stating the number of categories desired.
 #' @param B A list, each element of which contains a parameter vector. The list should
 #' have length \code{V - 1}. 
-#' @param X A matrix, each row of which contains subject covariate/predictor values. \code{X}
-#' should not contain a column for the intercept, as this will be added internally.
+#' @param X A matrix, each row of which contains subject covariate/predictor values. 
+#' @param X.incl.X0 Logical. When \code{TRUE}, \code{X} contains a column of 1's for
+#' the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.
 #' @return A matrix containing subject-specific probabilities for each category of the
 #' multinomial distribution. The number of rows equals \code{nrow(X)} and the number of 
 #' columns equals \code{V}. 
@@ -27,7 +28,8 @@
 #' generate_multinom_probs(V = vt, X = xt, B = bt)
 #' 
 #' @export 
-generate_multinom_probs <- function(V = NULL, B = NULL, X = NULL) {
+generate_multinom_probs <- function(V = NULL, B = NULL, X = NULL,
+                                    X.incl.X0 = FALSE) {
   
   if (length(B) != V - 1) {
     stop("Length of B must equal V - 1")
@@ -39,7 +41,10 @@ generate_multinom_probs <- function(V = NULL, B = NULL, X = NULL) {
     }
   }
   
-  X <- cbind(1, X)
+  if (X.incl.X0 == FALSE) {
+    X <- cbind(1, X)
+  }
+  
   
   # store exp(XB) for each of v = 1, ..., V
   exp.v.old <- NULL

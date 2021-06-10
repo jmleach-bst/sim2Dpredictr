@@ -25,3 +25,21 @@ test_that("Valid probabilities are generated.", {
                                                B = list(b1 = c(1, 0.25, -0.25),
                                                         b2 = c(-0.5, 0.15, 0.15)))))
 })
+
+test_that("Error for X.incl.X0 is TRUE", {
+  expect_error(generate_multinom_probs(V = 3, X = matrix(rnorm(10 * 2),
+                                                           ncol = 2, nrow = 10), 
+                                         B = list(b1 = c(1, 0.25, -0.25),
+                                                  b2 = c(-0.5, 0.15, 0.15)),
+                                         X.incl.X0 = TRUE),
+                 "1st column of X does not contain all 1's. Did you intend X.incl.X0 = FALSE?")
+})
+
+test_that("Warning for X.incl.X0 is FALSE", {
+  expect_warning(generate_multinom_probs(V = 3, X = cbind(1, matrix(rnorm(10 * 2),
+                                                           ncol = 2, nrow = 10)), 
+                                         B = list(b1 = c(1, 0.25, -0.25, 1),
+                                                  b2 = c(-0.5, 0.15, 0.15, 1)),
+                                         X.incl.X0 = FALSE),
+                 "1st column of X contains all 1's. Did you intend X.incl.X0 = TRUE?")
+})

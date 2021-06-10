@@ -164,8 +164,15 @@ sim_Y_MVN_X = function(N, B, L = NULL, R = NULL,
   } else {
     if (length(mu) != p) {cat("Invalid mean vector length.", "\n")}
   }
-
-  if (length(B) != p + 1){stop("B must have length 1 + nrow(L)")}
+  
+  if (dist == "multinomial") {
+    for (v in 1:length(B)) {
+      if (length(B[[v]]) != p + 1){stop("Each B must have length 1 + nrow(L)")}
+    }
+  } else {
+    if (length(B) != p + 1){stop("B must have length 1 + nrow(L)")}
+  }
+  
   out.names=c("Y", "X0")
   for (i in 3:(p + 2)){
     out.names[i] = paste0("X", i - 2)
@@ -268,7 +275,7 @@ sim_Y_MVN_X = function(N, B, L = NULL, R = NULL,
     Y <- c()
     
     # generate subject-specific probabilities
-    p.mn <- generate_multinom_probs(V = V, B = B, X = Xn)
+    p.mn <- generate_multinom_probs(V = V, B = B, X = Xn, X.incl.X0 = TRUE)
     
     Y <- c()
     for (i in 1:nrow(p.mn)) {

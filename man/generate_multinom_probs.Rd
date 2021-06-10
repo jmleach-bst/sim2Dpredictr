@@ -4,7 +4,7 @@
 \alias{generate_multinom_probs}
 \title{Generate Probabiltiies for Multinomial Draws}
 \usage{
-generate_multinom_probs(V = NULL, B = NULL, X = NULL)
+generate_multinom_probs(V = NULL, B = NULL, X = NULL, X.incl.X0 = FALSE)
 }
 \arguments{
 \item{V}{A numeric value stating the number of categories desired.}
@@ -12,8 +12,10 @@ generate_multinom_probs(V = NULL, B = NULL, X = NULL)
 \item{B}{A list, each element of which contains a parameter vector. The list should
 have length \code{V - 1}.}
 
-\item{X}{A matrix, each row of which contains subject covariate/predictor values. \code{X}
-should not contain a column for the intercept, as this will be added internally.}
+\item{X}{A matrix, each row of which contains subject covariate/predictor values.}
+
+\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} contains a column of 1's for
+the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.}
 }
 \value{
 A matrix containing subject-specific probabilities for each category of the
