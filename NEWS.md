@@ -5,3 +5,7 @@
 
 This is the first release of sim2Dpredictr. A vignette is in the works,
 so stay tuned.
+
+# Updates
+
+Note (June 11, 2021): R CMD check passes for R 4.1.0.
