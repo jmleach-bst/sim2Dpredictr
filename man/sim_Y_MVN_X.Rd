@@ -77,14 +77,14 @@ or thresholding is used to obtain non-Normal draws. Must have length 1 or length
 \itemize{
     \item \code{dist = "gaussian"} has \eqn{Y = XB + e}, where
     \eqn{e ~ N(0, rand.err)}.
-    \item \code{dist = "binomial"} is drawn from eqn{Bin(XB, XB(1-XB))}
-    using \code{rbinom()} when \code{binary.method = "traditional"}. If
-    \code{binary.method = "gaussian"}, then simulation is based on a
-    cutoff using \code{binary.cutoff}.
-    \item \code{dist = "multinomial"} is drawn from \code{sample()} using probabilities
+    \item \code{dist = "binomial"}: Y is drawn from a binomial distribution with probability
+    of "success" equal to \eqn{1 / (1 + 1 / exp(XB))} using \code{rbinom()} when 
+    \code{binary.method = "traditional"}. If \code{binary.method = "gaussian"}, then simulation 
+    is based on a cutoff using \code{binary.cutoff}.
+    \item \code{dist = "multinomial"}: Y is drawn from \code{sample()} using probabilities
     generated based on Chapter 6.1.3 of Agresti (2007). Threshold-based approaches are not
     currently supported.
-    \item \code{dist = "poisson"} is drawn from \eqn{Poisson(XB)} using
+    \item \code{dist = "poisson"}: Y is drawn from \eqn{Poisson(exp(XB))} using
     \code{rpois()}.
 }}
 
