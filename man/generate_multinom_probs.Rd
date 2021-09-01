@@ -2,15 +2,18 @@
 % Please edit documentation in R/generate_multinom_probs.R
 \name{generate_multinom_probs}
 \alias{generate_multinom_probs}
-\title{Generate Probabiltiies for Multinomial Draws}
+\title{Generate Probabilities for Multinomial Draws}
 \usage{
 generate_multinom_probs(V = NULL, B = NULL, X = NULL, X.incl.X0 = FALSE)
 }
 \arguments{
 \item{V}{A numeric value stating the number of categories desired.}
 
-\item{B}{A list, each element of which contains a parameter vector. The list should
-have length \code{V - 1}.}
+\item{B}{A list, each element of which contains a parameter vector. The list should have 
+length \code{V - 1}, i.e., should contain parameter values associated with all categories 
+except the reference category, following Agresti (2007). Alternatively, \code{B} may be a 
+list of length \code{V} if one desires to specify parameters for every category, i.e., 
+the over-parameterized model used in Friedman (2010).}
 
 \item{X}{A matrix, each row of which contains subject covariate/predictor values.}
 
@@ -37,8 +40,21 @@ xt <- matrix(rnorm(10 * 2), ncol = 2, nrow = 10)
 ## list of parameter vectors
 bt <- list(b1 = c(1, 0.25, -0.25),
            b2 = c(-0.5, 0.15, 0.15))
+           
+## list of parameter vectors (over-parameterized model)
+bu <- list(b1 = c(1, 0.25, -0.25),
+           b2 = c(-0.5, 0.15, 0.15),
+           b3 = c(-1, 0.1, -0.20))
 
 ## subject specific probabilities for each category
 generate_multinom_probs(V = vt, X = xt, B = bt)
 
+## subject specific probabilities for each category (over-parameterized model)
+generate_multinom_probs(V = vt, X = xt, B = bu)
+
+}
+\references{
+\insertRef{Agresti:2007}{sim2Dpredictr}
+
+\insertRef{Friedman:2010}{sim2Dpredictr}
 }
