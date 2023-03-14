@@ -2,7 +2,8 @@ test_that("Error if # Categories misaligned with # of parameter sets.", {
   expect_error(generate_multinom_probs(V = 3, 
                                        B = list(b1 = 1:4,
                                                 b2 = 1:4,
-                                                b3 = 1:4),
+                                                b3 = 1:4,
+                                                b4 = 1:4),
                                        X = matrix(rnorm(10*3),
                                                   nrow = 10,
                                                   ncol = 3)))
