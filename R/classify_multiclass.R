@@ -1,6 +1,8 @@
 #' Classify subjects based on predicted probabilities for each class
 #' 
-#' TBD
+#' Classify subjects based on predicted probabilities for each class. The predicted probabilities can
+#' be input by the user or calculated within-function using parameter estimates and design matrix for
+#' a multinomial regression model.
 #' 
 #' @param predicted.probs A matrix where the number of rows is equal to the number of subjects and the 
 #' number of columns equals the number of categories. \code{predicted.probs[i, j]} contains the probability 
@@ -13,7 +15,8 @@
 #' for each subject. When \code{FALSE}, a vector of the predicted classes is returned.  
 #' @inheritParams generate_multinom_probs 
 #' @return Depending on the option selected for \code{keep.probs}, returns a data frame or vector.
-#' @details TBD
+#' @details Classification for each subject is determined based on the category with highest
+#' predicted probability.
 #' @examples 
 #' ## number of categories
 #' vt <- 3

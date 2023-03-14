@@ -91,11 +91,7 @@ values are rounded to the nearest whole number.}
 This is useful to see the effect of image parameter selection and beta
 parameter selection on distributional parameters for the outcome of interest.}
 
-\item{xlim}{These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
-It is not recommended to alter these arguments unless changing the limits has a
-specific practical utility.}
-
-\item{ylim}{These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
+\item{xlim, ylim}{These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
 It is not recommended to alter these arguments unless changing the limits has a
 specific practical utility.}
 
@@ -132,47 +128,17 @@ Options are \code{c("gaussian", "gamma")}.}
 \item{sub.area}{When \code{sub.area = TRUE}, a random sub-section of the image is
 chosen, within which the Poisson process is used to generate the binary image.}
 
-\item{min.sa}{Only utilized when \code{sub.area = TRUE}, and
+\item{min.sa, max.sa}{Only utilized when \code{sub.area = TRUE}, and
 determines the width and height of the  minimum and maximum sub-areas; e.g., if
 \code{min.sa = c(0.1, 0.1)}, then the smallest possible random sub-area is a
 0.1 x 0.1 square.}
 
-\item{max.sa}{Only utilized when \code{sub.area = TRUE}, and
-determines the width and height of the  minimum and maximum sub-areas; e.g., if
-\code{min.sa = c(0.1, 0.1)}, then the smallest possible random sub-area is a
-0.1 x 0.1 square.}
-
-\item{radius.bounds.min.sa}{Only utilized when \code{sub.area = TRUE}, and
+\item{radius.bounds.min.sa, radius.bounds.max.sa}{Only utilized when \code{sub.area = TRUE}, and
 specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
 This information is used to adaptively alter the bounds in between the minimum and maximum
 sub-areas.}
 
-\item{radius.bounds.max.sa}{Only utilized when \code{sub.area = TRUE}, and
-specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
-This information is used to adaptively alter the bounds in between the minimum and maximum
-sub-areas.}
-
-\item{print.subj.sa}{These arguments are either
-\code{TRUE} or \code{FALSE}, and define print options for checking that the
-function is working as the user intends. \code{print.subj.sa = TRUE} prints the x-
-and y-limits for each subject's sub-area. \code{print.lambda = TRUE} prints each
-subject's mean and realized events; the means will be the same unless \code{random.lambda = TRUE},
-but the number of realized events will always vary. \code{print.iter = TRUE} is
-only used when \code{random.lambda = TRUE} and \code{is.null(lambda.bound) = FALSE},
-and shows iterations for re-drawing when the randomly selected intensity is outside
-the specified bounds.}
-
-\item{print.lambda}{These arguments are either
-\code{TRUE} or \code{FALSE}, and define print options for checking that the
-function is working as the user intends. \code{print.subj.sa = TRUE} prints the x-
-and y-limits for each subject's sub-area. \code{print.lambda = TRUE} prints each
-subject's mean and realized events; the means will be the same unless \code{random.lambda = TRUE},
-but the number of realized events will always vary. \code{print.iter = TRUE} is
-only used when \code{random.lambda = TRUE} and \code{is.null(lambda.bound) = FALSE},
-and shows iterations for re-drawing when the randomly selected intensity is outside
-the specified bounds.}
-
-\item{print.iter}{These arguments are either
+\item{print.subj.sa, print.lambda, print.iter}{These arguments are either
 \code{TRUE} or \code{FALSE}, and define print options for checking that the
 function is working as the user intends. \code{print.subj.sa = TRUE} prints the x-
 and y-limits for each subject's sub-area. \code{print.lambda = TRUE} prints each

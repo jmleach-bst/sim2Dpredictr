@@ -41,10 +41,13 @@ the intercept. Otherwise, a column of 1's is generated internally. Default is \c
 Depending on the option selected for \code{keep.probs}, returns a data frame or vector.
 }
 \description{
-TBD
+Classify subjects based on predicted probabilities for each class. The predicted probabilities can
+be input by the user or calculated within-function using parameter estimates and design matrix for
+a multinomial regression model.
 }
 \details{
-TBD
+Classification for each subject is determined based on the category with highest
+predicted probability.
 }
 \examples{
 ## number of categories

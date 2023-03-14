@@ -55,6 +55,35 @@
 	doi = {10.1111/j.1541-0420.2005.00359.x}
 }
 
+@article{Leach2022a,
+	abstract = {Spike-and-slab priors model predictors as arising from a mixture of distributions: those that should (slab) or should not (spike) remain in the model. The spike-and-slab lasso (SSL) is a mixture of double exponentials, extending the single lasso penalty by imposing different penalties on parameters based on their inclusion probabilities. The SSL was extended to Generalized Linear Models (GLM) for application in genetics/genomics, and can handle many highly correlated predictors of a scalar outcome, but does not incorporate these relationships into variable selection. When images/spatial data are used to model a scalar outcome, relevant parameters tend to cluster spatially, and model performance may benefit from incorporating spatial structure into variable selection. We propose to incorporate spatial information by assigning intrinsic autoregressive priors to the logit prior probabilities of inclusion, which results in more similar shrinkage penalties among spatially adjacent parameters. Using MCMC to fit Bayesian models can be computationally prohibitive for large-scale data, but we fit the model by adapting a computationally efficient coordinate-descent-based EM algorithm. A simulation study and an application to Alzheimer's Disease imaging data show that incorporating spatial information can improve model fitness.},
+	author = {Justin M Leach and Inmaculada Aban and Nengjun Yi},
+	doi = {10.1016/j.jspi.2021.07.010},
+	issn = {03783758},
+	journal = {Journal of Statistical Planning and Inference},
+	pages = {141-152},
+	pmid = {PMC10004347},
+	title = {Incorporating spatial structure into inclusion probabilities for Bayesian variable selection in generalized linear models with the spike-and-slab elastic net},
+	volume = {217},
+	url = {www.elsevier.com/locate/jspi},
+	year = {2022},
+}
+
+@article{Leach2022b,
+	abstract = {Alzheimer's disease (AD) is the leading cause of dementia and has received considerable research attention, including using neuroimaging biomarkers to classify patients and/or predict disease progression. Generalized linear models, e.g., logistic regression, can be used as classifiers, but since the spatial measurements are correlated and often outnumber subjects , penalized and/or Bayesian models will be identifiable, while classical models often will not. Many useful models, e.g., the elastic net and spike-and-slab lasso, perform automatic variable selection, which removes extraneous predictors and reduces model variance, but neither model exploits spatial information in selecting variables. Spatial information can be incorporated into variable selection by placing intrinsic autoregressive priors on the logit probabilities of inclusion within a spike-and-slab elastic net framework. We demonstrate the ability of this framework to improve classification performance by using cortical thickness and tau-PET images from the Alzheimer's Disease Neuroimaging Initiative (ADNI) to classify subjects as cognitively normal or having dementia, and by using a simulation study to examine model performance using finer resolution images.},
+	author = {Justin M Leach and Lloyd J Edwards and Rajesh Kana and Kristina Visscher and Nengjun Yi and Inmaculada Aban},
+	doi = {10.1371/journal.pone.0262367},
+	isbn = {1111111111},
+	issue = {2},
+	journal = {PLoS ONE},
+	pages = {e0262367},
+	pmid = {PMC8812870},
+	title = {The spike-and-slab elastic net as a classification tool in Alzheimer's disease},
+	volume = {17},
+	url = {https://doi.org/10.1371/journal.pone.0262367},
+	year = {2022},
+}
+
 @Manual{R,
 	title = {\proglang{R}: {A} Language and Environment for Statistical Computing},
 	author = {{\proglang{R} Core Team}},

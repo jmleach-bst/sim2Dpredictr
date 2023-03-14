@@ -76,11 +76,7 @@ rectangular neighborhood about locations. Note that this argument differs from t
 \code{\link[sim2Dpredictr]{precision_builder}}, in which \code{neighborhood} defines conditional non-zero
 correlations.}
 
-\item{w}{If \code{neighborhood = "rectangle"} then w and h are the number of locations
-to the left/right and above/below a location i that define its neighborhood. Any locations
-outside this neighborhood have have zero correlation with location i.}
-
-\item{h}{If \code{neighborhood = "rectangle"} then w and h are the number of locations
+\item{w, h}{If \code{neighborhood = "rectangle"} then w and h are the number of locations
 to the left/right and above/below a location i that define its neighborhood. Any locations
 outside this neighborhood have have zero correlation with location i.}
 

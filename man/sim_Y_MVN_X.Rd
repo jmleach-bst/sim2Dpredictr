@@ -39,23 +39,13 @@ with all categories except the reference category. Alternatively, when \code{dis
 \code{B} may be a list of length \code{V} if one desires to specify parameters for 
 every category, i.e., the over-parameterized model used in Friedman (2010).}
 
-\item{L}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
+\item{L, R}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
 and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
 Obtain \code{L} or \code{R} via \code{chol_s2Dp()} with settings
 \code{triangle = "lower"} or \code{triangle = "upper"}, respectively.
 Specify either \code{L} or \code{R}, but NOT both.}
 
-\item{R}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
-and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
-Obtain \code{L} or \code{R} via \code{chol_s2Dp()} with settings
-\code{triangle = "lower"} or \code{triangle = "upper"}, respectively.
-Specify either \code{L} or \code{R}, but NOT both.}
-
-\item{S}{A covariance or precision matrix respectively. These are for use with \code{spam},
-and can be extracted from output of \code{\link[sim2Dpredictr]{chol_s2Dp}} after choosing
-\code{return.cov = TRUE} or \code{return.prec = TRUE}, respectively.}
-
-\item{Q}{A covariance or precision matrix respectively. These are for use with \code{spam},
+\item{S, Q}{A covariance or precision matrix respectively. These are for use with \code{spam},
 and can be extracted from output of \code{\link[sim2Dpredictr]{chol_s2Dp}} after choosing
 \code{return.cov = TRUE} or \code{return.prec = TRUE}, respectively.}
 

@@ -21,12 +21,9 @@
 #' @examples
 #' ## Necessary pre-specified arguments required for the function to work.
 #'
-#' ## requires tidyverse (dplyr)
-#' library(tidyverse)
-#'
 #' ## image resoluation + number of spatial predictors
 #' im.res <- c(5, 5)
-#' J = prod(im.res)
+#' J <- prod(im.res)
 #'
 #' ## create predictor indices w/ coordinates
 #' row.id <-rep(1, im.res[2])

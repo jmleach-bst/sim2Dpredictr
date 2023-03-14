@@ -16,7 +16,7 @@ generate_grid <- function(im.res, xlim = c(0, 1), ylim = c(0, 1)) {
   y.length <- ylim[2] - ylim[1]
   x.cell <- seq(xlim[1], xlim[2], x.length / im.res[2])
   y.cell <- seq(ylim[2], ylim[1], -y.length / im.res[1])
-  x.coord=c()
+  x.coord <- c()
   for (i in 1:(length(x.cell) - 1)){
     x.coord[i] <- mean(c(x.cell[i], x.cell[i + 1]))
   }

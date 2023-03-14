@@ -231,9 +231,9 @@ beta_builder = function(row.index, col.index, im.res,
 
   # ensure non-zero parameters go to the correct location of the
   # parameter vector.
-  B.not0.m=matrix(c(row.index, col.index), ncol = 2)
-  I = im.res[1]
-  J = im.res[2]
+  B.not0.m <- matrix(c(row.index, col.index), ncol = 2)
+  I <- im.res[1]
+  J <- im.res[2]
   B.not0.v = c()
   for (i in 1:nrow(B.not0.m)) {
     B.not0.v[i] = J * (B.not0.m[i, 1] - 1) + B.not0.m[i, 2]
