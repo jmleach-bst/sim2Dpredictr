@@ -1,6 +1,6 @@
 Package: sim2Dpredictr
 Title: Simulate Outcomes Using Spatially Dependent Design Matrices
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: person("Justin", "Leach", email = "jleach@uab.edu", role = c("aut", "cre", "cph"))
 Description: Provides tools for simulating spatially dependent predictors (continuous or binary),
     which are used to generate scalar outcomes in a (generalized) linear model framework. Continuous
@@ -14,18 +14,14 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports:
-	car,
-	ggplot2,
 	MASS,
 	Rdpack,
 	spam (>= 2.2-0),
-	tidyverse,
 	tibble,
 	dplyr,
-	magrittr,
 	matrixcalc
 RdMacros: Rdpack
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Suggests: 
     knitr,
     rmarkdown,
