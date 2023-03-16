@@ -79,7 +79,7 @@ is \eqn{N(0, [diag(tau^2) D (I - alpha D^{-1}W)] ^ {-1})}, e.g. as in
 \insertCite{Jin+Carlin+Banerjee:2005}{sim2Dpredictr}.
 }
 \examples{
-
+\dontrun{
 precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
                   neighborhood = "ar1")
 
@@ -94,7 +94,7 @@ precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
 
 precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
                   neighborhood = "rectangle", w = 2, h = 2)
-
+}
 }
 \references{
 \insertRef{Banerjee:2015}{sim2Dpredictr}

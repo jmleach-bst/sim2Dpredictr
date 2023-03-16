@@ -48,7 +48,7 @@
 #' \insertCite{Jin+Carlin+Banerjee:2005}{sim2Dpredictr}.
 #' @return A (precision) matrix.
 #' @examples
-#'
+#' \dontrun{
 #' precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
 #'                   neighborhood = "ar1")
 #'
@@ -63,7 +63,7 @@
 #'
 #' precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
 #'                   neighborhood = "rectangle", w = 2, h = 2)
-#'
+#' }
 #' @importFrom Rdpack reprompt
 #' @references
 #' \insertRef{Banerjee:2015}{sim2Dpredictr}

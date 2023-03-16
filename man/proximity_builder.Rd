@@ -60,6 +60,7 @@ Generates a proximity matrix where non-zero entries are the weights
 associated with neighbors, and zero entries are not neighbors.
 }
 \examples{
+\dontrun{
 ## adjacency matrix with sparse structure (i.e., 2 columns) 
 ## and ar1 neighborhood
 sp.ar1 <- proximity_builder(im.res = c(3, 3),
@@ -85,4 +86,5 @@ full.rnd <- proximity_builder(im.res = c(3, 3),
                               weight = "distance",
                               neighborhood = "round", r = 2,
                               type = "full")
+}
 }

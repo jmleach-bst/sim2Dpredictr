@@ -32,6 +32,7 @@
 #' @return A (proximity) matrix.
 #' @importFrom dplyr mutate
 #' @examples
+#' \dontrun{
 #' ## adjacency matrix with sparse structure (i.e., 2 columns) 
 #' ## and ar1 neighborhood
 #' sp.ar1 <- proximity_builder(im.res = c(3, 3),
@@ -57,6 +58,7 @@
 #'                               weight = "distance",
 #'                               neighborhood = "round", r = 2,
 #'                               type = "full")
+#' }
 #' @export
 proximity_builder <- function(im.res, neighborhood = "ar1",
                               type = c("sparse", "full"),
