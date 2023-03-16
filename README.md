@@ -7,7 +7,7 @@
 <!-- [![Travis build status](https://travis-ci.com/jmleach-bst/sim2Dpredictr.svg?branch=master)](https://travis-ci.com/jmleach-bst/sim2Dpredictr) -->
 
 [![](https://www.r-pkg.org/badges/version/sim2Dpredictr?color=green)](https://cran.r-project.org/package=sim2Dpredictr)
-[![](https://img.shields.io/badge/devel%20version-0.1.1-green.svg)](https://github.com/sim2Dpredictr)
+[![](https://img.shields.io/badge/devel%20version-0.1.1-green.svg)](https://github.com/jmleach-bst/sim2Dpredictr)
 [![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
 <!-- [![CRAN checks](https://badges.cranchecks.info/summary/sim2Dpredictr.svg)](https://cran.r-project.org/web/checks/check_results_sim2Dpredictr.html) -->
 <!-- [![R build status](https://github.com/jmleach-bst/sim2Dpredictr/workflows/R-CMD-CHECK/badge.svg)](https://github.com/jmleach-bst/sim2Dpredictr/actions) -->
@@ -17,13 +17,20 @@
 
 The goal of `sim2Dpredictr` is to facilitate straightforward simulation
 of spatially dependent predictors (continuous or binary), which may then
-be used to simulate continuous, binary, or count outcomes within a
-(generalized) linear model framework. A real-world example is when using
-medical images to model/predict (scalar) clinical outcomes; such a
-scenario motivated the development of `sim2Dpredictr`, which was used to
-simulate data to evaluate the performance of methods for
-high-dimensional data analysis and prediction (Leach, Aban, and Yi 2022;
-Leach et al. 2022).
+be used to simulate continuous, binary, count, or categorical ($> 2$
+categories) outcomes within a (generalized) linear model framework. A
+real-world example is when using medical images to model/predict
+(scalar) clinical outcomes; such a scenario motivated the development of
+`sim2Dpredictr`, which was used to simulate data to evaluate the
+performance of methods for high-dimensional data analysis and prediction
+(Leach, Aban, and Yi 2022; Leach et al. 2022).
+
+In the first step, we simulate the predictors, i.e., the $\mathbf{X}_i$
+part of a GLM,
+
+$$
+g(E[Y_i]) = \mathbf{X}_i\mathbf{\beta}
+$$ where $g(\cdot)$ is an appropriate link function.
 
 Continuous predictors are simulated using Multivariate Normal (MVN)
 distributions with a focus on specific correlation structures;
@@ -38,6 +45,15 @@ tool for easily specifying a parameter vector with spatially clustered
 non-zero elements. These simulation tools are designed for, but not
 limited to, testing the performance of variable selection methods when
 predictors are spatially correlated.
+
+In the second step we use the predictor matrix $X$ to generate scalar
+outcomes, i.e., the $Y$ part of the GLM, using either the inverse link
+function:
+
+$$
+Y_i = g^{-1}(\mathbf{X}_i\mathbf{\beta})
+$$ or else a thresholding mechanism (binary/categorical data) if using
+the inverse link function is too computationally expensive.
 
 ## Installation
 
@@ -84,14 +100,14 @@ sim.dat <- sim2Dpredictr::sim_Y_MVN_X(N = 3, B = Bex$B,
                                       dist = "binomial")
 
 sim.dat
-#>   Y         X1         X2         X3         X4         X5        X6         X7
-#> 1 0 -0.6007881 -0.3552729 -1.4634055 -1.5795154 -1.3311854 -1.168260 -0.3566136
-#> 2 0 -1.6741857 -2.0865888 -0.7518786 -0.3327390 -0.2619845 -1.331728  1.3671806
-#> 3 1  0.4353567  0.7038196  1.3013708  0.3029747 -0.1636330  1.840203 -0.9922996
-#>           X8          X9 subjectID
-#> 1 -1.0902409 -0.66848165         1
-#> 2 -0.2722384 -0.25397859         2
-#> 3 -0.4081093 -0.08291556         3
+#>   Y         X1          X2         X3         X4         X5          X6
+#> 1 1 -0.2158795 -0.04414148 -0.4447861 -1.0703666 -0.5034494 -0.77013409
+#> 2 1 -0.8931266  1.35880687  1.4039490 -0.1226690 -1.4444909 -0.03972851
+#> 3 0 -1.5066110  0.66783487 -1.0742602 -0.8250312 -1.4688046 -1.13452138
+#>           X7         X8         X9 subjectID
+#> 1 -0.4652992 -0.5834832  0.1262683         1
+#> 2 -0.9566172 -1.4805823 -1.2585180         2
+#> 3 -1.8442278 -0.5201953 -1.4143927         3
 ```
 
 Once the dependence framework and non-zero parameter vector is set,
