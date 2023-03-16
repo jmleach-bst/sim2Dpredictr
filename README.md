@@ -4,15 +4,15 @@
 # sim2Dpredictr
 
 <!-- badges: start -->
+<!-- [![Travis build status](https://travis-ci.com/jmleach-bst/sim2Dpredictr.svg?branch=master)](https://travis-ci.com/jmleach-bst/sim2Dpredictr) -->
 
-[![Travis build
-status](https://travis-ci.org/jmleach-bst/sim2Dpredictr.svg?branch=master)](https://travis-ci.org/jmleach-bst/sim2Dpredictr)
 [![](https://www.r-pkg.org/badges/version/sim2Dpredictr?color=green)](https://cran.r-project.org/package=sim2Dpredictr)
 [![](https://img.shields.io/badge/devel%20version-0.1.1-green.svg)](https://github.com/sim2Dpredictr)
 [![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
-[![R build
-status](https://github.com/jmleach-bst/sim2Dpredictr/workflows/R-CMD-check/badge.svg)](https://github.com/jmleach-bst/sim2Dpredictr/actions)
+<!-- [![CRAN checks](https://badges.cranchecks.info/summary/sim2Dpredictr.svg)](https://cran.r-project.org/web/checks/check_results_sim2Dpredictr.html) -->
+<!-- [![R build status](https://github.com/jmleach-bst/sim2Dpredictr/workflows/R-CMD-CHECK/badge.svg)](https://github.com/jmleach-bst/sim2Dpredictr/actions) -->
 <!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sim2Dpredictr)](https://cran.r-project.org/package=sim2Dpredictr) -->
+[![R-CMD-check](https://github.com/jmleach-bst/sim2Dpredictr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jmleach-bst/sim2Dpredictr/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `sim2Dpredictr` is to facilitate straightforward simulation
@@ -84,14 +84,14 @@ sim.dat <- sim2Dpredictr::sim_Y_MVN_X(N = 3, B = Bex$B,
                                       dist = "binomial")
 
 sim.dat
-#>   Y         X1         X2          X3         X4         X5          X6
-#> 1 0 -2.0282067 -0.3947622  0.42719979 -1.4738383 -1.6072186  0.15833971
-#> 2 0 -0.3330351 -0.8197950  0.58310128  0.8063035 -0.8483334 -0.04106633
-#> 3 0 -0.3473204  0.1650669 -0.02370601 -0.6530824  0.4367157 -0.12974569
-#>           X7         X8          X9 subjectID
-#> 1 -0.4085001 -0.3598828 -0.30711039         1
-#> 2  0.7567934  0.9183920 -2.02132766         2
-#> 3  0.4762204  0.6449660 -0.03764253         3
+#>   Y         X1         X2         X3         X4         X5        X6         X7
+#> 1 0 -0.6007881 -0.3552729 -1.4634055 -1.5795154 -1.3311854 -1.168260 -0.3566136
+#> 2 0 -1.6741857 -2.0865888 -0.7518786 -0.3327390 -0.2619845 -1.331728  1.3671806
+#> 3 1  0.4353567  0.7038196  1.3013708  0.3029747 -0.1636330  1.840203 -0.9922996
+#>           X8          X9 subjectID
+#> 1 -1.0902409 -0.66848165         1
+#> 2 -0.2722384 -0.25397859         2
+#> 3 -0.4081093 -0.08291556         3
 ```
 
 Once the dependence framework and non-zero parameter vector is set,
