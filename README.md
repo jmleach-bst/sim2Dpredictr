@@ -26,9 +26,7 @@ performance of methods for high-dimensional data analysis and prediction
 (Leach, Aban, and Yi 2022; Leach et al. 2022).
 
 In the first step, we simulate the predictors, i.e., the $\mathbf{X}_i$
-part of a GLM,
-
-$$
+part of a GLM, $$
 g(E[Y_i]) = \mathbf{X}_i\mathbf{\beta}
 $$ where $g(\cdot)$ is an appropriate link function.
 
@@ -48,9 +46,7 @@ predictors are spatially correlated.
 
 In the second step we use the predictor matrix $X$ to generate scalar
 outcomes, i.e., the $Y$ part of the GLM, using either the inverse link
-function:
-
-$$
+function: $$
 Y_i = g^{-1}(\mathbf{X}_i\mathbf{\beta})
 $$ or else a thresholding mechanism (binary/categorical data) if using
 the inverse link function is too computationally expensive.
@@ -100,14 +96,14 @@ sim.dat <- sim2Dpredictr::sim_Y_MVN_X(N = 3, B = Bex$B,
                                       dist = "binomial")
 
 sim.dat
-#>   Y         X1          X2         X3         X4         X5          X6
-#> 1 1 -0.2158795 -0.04414148 -0.4447861 -1.0703666 -0.5034494 -0.77013409
-#> 2 1 -0.8931266  1.35880687  1.4039490 -0.1226690 -1.4444909 -0.03972851
-#> 3 0 -1.5066110  0.66783487 -1.0742602 -0.8250312 -1.4688046 -1.13452138
+#>   Y        X1         X2          X3         X4         X5         X6
+#> 1 0  0.307990 -0.5758996  0.03804819 -0.9692000  0.2110300 0.12361977
+#> 2 1  1.416984  0.1789944 -0.55175149  0.3737575 -0.4954684 0.37222636
+#> 3 0 -1.442450 -0.8783748  0.01786101 -0.4346107 -1.4000065 0.08819229
 #>           X7         X8         X9 subjectID
-#> 1 -0.4652992 -0.5834832  0.1262683         1
-#> 2 -0.9566172 -1.4805823 -1.2585180         2
-#> 3 -1.8442278 -0.5201953 -1.4143927         3
+#> 1 -0.7237940 -0.0746956  1.3026746         1
+#> 2 -0.2156682 -0.5587715 -0.6086511         2
+#> 3 -0.8522514 -2.0680931 -0.6690018         3
 ```
 
 Once the dependence framework and non-zero parameter vector is set,
