@@ -26,5 +26,5 @@ Suggests:
     knitr,
     rmarkdown,
     testthat
-URL: http://github.com/jmleach-bst/sim2Dpredictr
-BugReports: http://github.com/jmleach-bst/sim2Dpredictr
+URL: https://github.com/jmleach-bst/sim2Dpredictr
+BugReports: https://github.com/jmleach-bst/sim2Dpredictr
