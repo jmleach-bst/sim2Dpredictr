@@ -7,16 +7,17 @@
 generate_grid(im.res, xlim = c(0, 1), ylim = c(0, 1))
 }
 \arguments{
-\item{im.res}{A vector specifying the dimension/resolution of the image. The first entry is
-the number of 'rows' in the lattice/image, and the second entry is the number of
-'columns' in the lattice/image.}
+\item{im.res}{A vector specifying the dimension/resolution of the image. The 
+first entry is the number of 'rows' in the lattice/image, and the second 
+entry is the number of columns' in the lattice/image.}
 
-\item{xlim, ylim}{These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
-It is not recommended to alter these arguments unless changing the limits has a
-specific practical utility.}
+\item{xlim, ylim}{These are the 2D image limits. Defaults for both are 
+\code{c(0, 1)}. It is not recommended to alter these arguments unless 
+changing the limits has a specific practical utility.}
 }
 \value{
-A data frame whose first column is x-coordinates and whose second column is y-coordinates.
+A data frame whose first column is x-coordinates and whose second 
+column is y-coordinates.
 }
 \description{
 Input the limits of a 2D space and the desired image resolution, then

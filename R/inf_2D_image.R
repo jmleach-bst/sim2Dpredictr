@@ -5,26 +5,27 @@
 #'
 #' @return An image depicting the spatial extent of some image characteristic.
 #'
-#' @param im.res A vector defining the dimension of spatial data. The first entry is the
-#' number of rows and the second  entry is the number of columns.
+#' @param im.res A vector defining the dimension of spatial data. The first
+#' entry is the number of rows and the second  entry is the number of columns.
 #' @inheritParams sample_FP_Power
 #' @param grid.color Specify the color for the grid lines.
 #' @param binarize.B Either \code{TRUE} (default) or \code{FALSE}. When
-#' \code{binarize.B = TRUE} the parameter vector is converted to a binary vector
-#' where 1 indicates non-zero parameter and 0 indicates zero-valued parameter.
-#' @param n.colors Determines the number of colors in the printed image. Default is
-#' \code{length(unique(B))}, but it is recommended to use trial and error to determine
-#' the ideal setting for specific situations.
-#' @param plot.title When \code{plot.title = TRUE} a title accompanies the output graph, and
-#' \code{plot.title = FALSE} suppresses the title.
-#' @param manual.title When \code{plot.title = TRUE}, use \code{manual.title} to specify 
-#' a title manually.
-#' @param title.size Specifies the size of the title text. This is based on \code{cex.main}
-#' within the \code{image()} function. Default is 1.
+#' \code{binarize.B = TRUE} the parameter vector is converted to a binary 
+#' vector where 1 indicates non-zero parameter and 0 indicates zero-valued 
+#' parameter.
+#' @param n.colors Determines the number of colors in the printed image. 
+#' Default is \code{length(unique(B))}, but it is recommended to use trial 
+#' and error to determine the ideal setting for specific situations.
+#' @param plot.title When \code{plot.title = TRUE} a title accompanies the 
+#' output graph, and \code{plot.title = FALSE} suppresses the title.
+#' @param manual.title When \code{plot.title = TRUE}, use \code{manual.title}
+#' to specify a title manually.
+#' @param title.size Specifies the size of the title text. This is based on 
+#' \code{cex.main} within the \code{image()} function. Default is 1.
 #' @importFrom grDevices terrain.colors
 #' @importFrom graphics box grid image legend
-#' @note If both \code{rejections} and \code{B} are specified then the function
-#' provides an image with separate color each for:
+#' @note If both \code{rejections} and \code{B} are specified then the 
+#' function provides an image with separate color each for:
 #' \itemize{
 #'     \item No rejection and \code{B[i] = 0} (i.e. True Negative).
 #'     \item No rejection and \code{B[i] != 0} (i.e. False Negative).
@@ -105,12 +106,12 @@ inf_2D_image <- function(rejections = NULL, B = NULL, im.res,
                          manual.title = NULL, title.size = 1) {
 
   # otherwise the images are screwy-looking
-  rotate = function(x){
+  rotate <- function(x){
     t(apply(x, 2, rev))
   }
 
   if ( (B.incl.B0 == TRUE) & (is.null(B) == FALSE) ) {
-    B = B[-1]
+    B <- B[-1]
   }
 
   if (is.null(rejections) == TRUE &

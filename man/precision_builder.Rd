@@ -18,68 +18,81 @@ precision_builder(
 )
 }
 \arguments{
-\item{im.res}{A vector defining the dimension of spatial data. The first entry is the
-number of rows and the second  entry is the number of columns.}
+\item{im.res}{A vector defining the dimension of spatial data. The first 
+entry is the number of rows and the second  entry is the number of columns.}
 
-\item{tau}{A vector containing precision parameters. If of length 1, then all precisions are assumed equal.
-Otherwise the length of \code{tau} should equal the number of variables.}
+\item{tau}{A vector containing precision parameters. If of length 1, then 
+all precisions are assumed equal. Otherwise the length of \code{tau} should 
+equal the number of variables.}
 
-\item{alpha}{A scalar value between 0 and 1 that defines the strength of correlations. Note that when
-\code{alpha = 0} the data are independent and when \code{alpha = 1}, the joint distribution is
-the improper Intrinsic Autoregression (IAR), which cannot be used to generate data. Note also that  while
-\code{alpha} does control dependence it is not interpretable as a correlation.}
+\item{alpha}{A scalar value between 0 and 1 that defines the strength of 
+correlations. Note that when \code{alpha = 0} the data are independent and
+when \code{alpha = 1}, the joint distribution is the improper Intrinsic 
+Autoregression (IAR), which cannot be used to generate data. Note also that
+while \code{alpha} does control dependence it is not interpretable as a 
+correlation.}
 
-\item{neighborhood}{Defines the neighborhood within which conditional correlations are non-zero.
-This differs from use in \code{\link[sim2Dpredictr]{correlation_builder}}, where the neighborhood defines non-zero marginal
-correlations. The default is \code{"ar1"}, which creates a neighborhood where the spatial locations
-directly above, below, left, and right of a location are included in the neighborhood. More complicated
-neighborhoods can be specified by \code{neighborhood = "round"}, which defines a circular neighborhood
-about each location, and \code{neighborhood = "rectangle"}, which defines a rectangular neighborhood
+\item{neighborhood}{Defines the neighborhood within which conditional 
+correlations are non-zero. This differs from use in 
+\code{\link[sim2Dpredictr]{correlation_builder}}, where the neighborhood
+defines non-zero marginal correlations. The default is \code{"ar1"}, which
+creates a neighborhood where the spatial locations directly above, below,
+left, and right of a location are included in the neighborhood. More 
+complicated neighborhoods can be specified by \code{neighborhood = "round"},
+which defines a circular neighborhood about each location, and 
+\code{neighborhood = "rectangle"}, which defines a rectangular neighborhood
 about each location.}
 
-\item{weight}{Determines how weights are assigned. \code{"distance"} assigns weights as the inverse of
-Euclidean distance times a constant, \code{phi}. \code{"binary"} assigns weights to 1 for neighbors and 0 otherwise.}
+\item{weight}{Determines how weights are assigned. \code{"distance"} 
+assigns weights as the inverse of Euclidean distance times a constant, 
+\code{phi}. \code{"binary"} assigns weights to 1 for neighbors and 0 
+otherwise.}
 
-\item{phi}{When \code{weight = "distance"} a constant by which to multiply the inverse of Euclidean distance.
-Defaults to 1, and must exceed 0.}
+\item{phi}{When \code{weight = "distance"} a constant by which to multiply 
+the inverse of Euclidean distance. Defaults to 1, and must exceed 0.}
 
-\item{r}{If \code{neighborhood = "round"}, then locations i,j are separated by
-distance \eqn{d \ge r} are conditionally independent.}
+\item{r}{If \code{neighborhood = "round"}, then locations i,j are 
+separated by distance \eqn{d \ge r} are conditionally independent.}
 
-\item{w, h}{If \code{neighborhood = "rectangle"} then \code{w} and \code{h} are the number of locations
-to the left/right and above/below a location i that define its neighborhood. Any locations
-outside this neighborhood are conditionally independent of the specified location.}
+\item{w, h}{If \code{neighborhood = "rectangle"} then \code{w} and \code{h}
+are the number of locations to the left/right and above/below a location 
+i that define its neighborhood. Any locations outside this neighborhood are
+conditionally independent of the specified location.}
 
-\item{digits.Q}{Determines the number of digits to round entries in the precision matrix. Default is 10.}
+\item{digits.Q}{Determines the number of digits to round entries in the 
+precision matrix. Default is 10.}
 }
 \value{
 A (precision) matrix.
 }
 \description{
-This function constructs the precision matrix for a Conditional Autoregression (CAR).
+This function constructs the precision matrix for a Conditional 
+Autoregression (CAR).
 }
 \details{
-This formulation of the CAR model is based on a formulation found in \insertCite{Banerjee:2015}{sim2Dpredictr}
-where the joint distribution of the of the conditionally specified random variables are assumed to be
-\eqn{N(0, [diag(tau^2)(D - alpha W)] ^ {-1})} and all neighbors are weighted 1. When weights other than 1 are desired,
-the joint distribution is \eqn{N(0, [diag(tau^2) D (I - alpha D^{-1}W)] ^ {-1})}, e.g. as in
+This formulation of the CAR model is based on a formulation found 
+in \insertCite{Banerjee:2015}{sim2Dpredictr} where the joint distribution 
+of the of the conditionally specified random variables are assumed to be
+\eqn{N(0, [diag(tau^2)(D - alpha W)] ^ {-1})} and all neighbors are 
+weighted 1. When weights other than 1 are desired, the joint distribution
+is \eqn{N(0, [diag(tau^2) D (I - alpha D^{-1}W)] ^ {-1})}, e.g. as in
 \insertCite{Jin+Carlin+Banerjee:2005}{sim2Dpredictr}.
 }
 \examples{
 
-precision_builder(im.res = c(5, 5), tau = 1, alpha = 0.75,
+precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
                   neighborhood = "ar1")
 
 ## binary weights
-precision_builder(im.res = c(5, 5), tau = 1, alpha = 0.75,
+precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
                   neighborhood = "round", r = 3)
 
 ## weights based on distance
-precision_builder(im.res = c(5, 5), tau = 1, alpha = 0.75,
+precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
                   weight = "distance", phi = 1,
                   neighborhood = "round", r = 3)
 
-precision_builder(im.res = c(5, 5), tau = 1, alpha = 0.75,
+precision_builder(im.res = c(3, 3), tau = 1, alpha = 0.75,
                   neighborhood = "rectangle", w = 2, h = 2)
 
 }

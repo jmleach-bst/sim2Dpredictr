@@ -20,47 +20,54 @@ inf_2D_image(
 )
 }
 \arguments{
-\item{rejections}{A binary vector; \code{rejection[i] = 1} means the null hypothesis is
-rejected for parameter \code{B[i]}, whereas \code{rejection[i] = 0} means that the null
-hypothesis was not rejected for parameter \code{B[i]}.}
+\item{rejections}{A binary vector; \code{rejection[i] = 1} means the null
+hypothesis is rejected for parameter \code{B[i]}, whereas 
+\code{rejection[i] = 0} means that the null hypothesis was not rejected
+ for parameter \code{B[i]}.}
 
-\item{B}{A vector of "true" parameter values. For inference purposes, this can be a vector
-of actual parameter values, or a binary vector indicating non-zero status.}
+\item{B}{A vector of "true" parameter values. For inference purposes, this
+can be a vector of actual parameter values, or a binary vector indicating
+non-zero status.}
 
-\item{im.res}{A vector defining the dimension of spatial data. The first entry is the
-number of rows and the second  entry is the number of columns.}
+\item{im.res}{A vector defining the dimension of spatial data. The first
+entry is the number of rows and the second  entry is the number of columns.}
 
-\item{test.statistic}{A vector of test statistics; e.g., t-statistics or p-values that
-are used to determine whether or not to reject the null hypothesis.}
+\item{test.statistic}{A vector of test statistics; e.g., t-statistics or
+p-values that are used to determine whether or not to reject the null
+hypothesis.}
 
-\item{reject.threshold}{A list whose first element is the rejection criteria, e.g., the
-minimum t-statistic or maximum p-value for which to reject the null hypothesis. The second
-element is one of \code{c("greater", "less", "2-tailed")}, which tell the function to reject
-when the values in \code{test.statistic} are greater than or less than the threshold,
-the test is a 2-tailed, respectively. In the latter case the function internally calculates
-the upper or lower threshold needed for the 2-tailed test.}
+\item{reject.threshold}{A list whose first element is the rejection 
+criteria, e.g., the minimum t-statistic or maximum p-value for which to
+reject the null hypothesis. The second element is one of 
+\code{c("greater", "less", "2-tailed")}, which tell the function to reject
+when the values in \code{test.statistic} are greater than or less than the
+threshold, the test is a 2-tailed, respectively. In the latter case the 
+function internally calculates the upper or lower threshold needed for the
+2-tailed test.}
 
 \item{binarize.B}{Either \code{TRUE} (default) or \code{FALSE}. When
-\code{binarize.B = TRUE} the parameter vector is converted to a binary vector
-where 1 indicates non-zero parameter and 0 indicates zero-valued parameter.}
+\code{binarize.B = TRUE} the parameter vector is converted to a binary 
+vector where 1 indicates non-zero parameter and 0 indicates zero-valued 
+parameter.}
 
 \item{grid.color}{Specify the color for the grid lines.}
 
-\item{n.colors}{Determines the number of colors in the printed image. Default is
-\code{length(unique(B))}, but it is recommended to use trial and error to determine
-the ideal setting for specific situations.}
+\item{n.colors}{Determines the number of colors in the printed image. 
+Default is \code{length(unique(B))}, but it is recommended to use trial 
+and error to determine the ideal setting for specific situations.}
 
-\item{B.incl.B0}{If \code{B.incl.B0 = TRUE} then the first entry should be the intercept,
-B0. \code{B.incl.B0 = FALSE} indicates that the first entry of B is not an intercept.}
+\item{B.incl.B0}{If \code{B.incl.B0 = TRUE} then the first entry should be
+the intercept, B0. \code{B.incl.B0 = FALSE} indicates that the first entry
+of B is not an intercept.}
 
-\item{plot.title}{When \code{plot.title = TRUE} a title accompanies the output graph, and
-\code{plot.title = FALSE} suppresses the title.}
+\item{plot.title}{When \code{plot.title = TRUE} a title accompanies the 
+output graph, and \code{plot.title = FALSE} suppresses the title.}
 
-\item{manual.title}{When \code{plot.title = TRUE}, use \code{manual.title} to specify 
-a title manually.}
+\item{manual.title}{When \code{plot.title = TRUE}, use \code{manual.title}
+to specify a title manually.}
 
-\item{title.size}{Specifies the size of the title text. This is based on \code{cex.main}
-within the \code{image()} function. Default is 1.}
+\item{title.size}{Specifies the size of the title text. This is based on 
+\code{cex.main} within the \code{image()} function. Default is 1.}
 }
 \value{
 An image depicting the spatial extent of some image characteristic.
@@ -70,8 +77,8 @@ Provide graphics for spatial extent of predictor parameters, rejections
 and/or the truth/falsity of the rejections.
 }
 \note{
-If both \code{rejections} and \code{B} are specified then the function
-provides an image with separate color each for:
+If both \code{rejections} and \code{B} are specified then the 
+function provides an image with separate color each for:
 \itemize{
     \item No rejection and \code{B[i] = 0} (i.e. True Negative).
     \item No rejection and \code{B[i] != 0} (i.e. False Negative).

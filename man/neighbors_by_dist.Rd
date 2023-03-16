@@ -11,7 +11,8 @@ neighbors_by_dist(x, y, coords, im.res, r, print.ring = FALSE)
 
 \item{coords}{A dataframe containing indices and coordinates for the image.}
 
-\item{im.res}{A vector containing the number of rows and columns, respectively.}
+\item{im.res}{A vector containing the number of rows and columns, 
+respectively.}
 
 \item{r}{A scalar value determining the radius within which other locations
 are neighbors to the current location (x, y).}
@@ -22,20 +23,22 @@ in each ring. This argument primarily exists to allow the user to test
 whether the neighborhood structure specified is as desired.}
 }
 \value{
-A tibble whose first column contains x indices, second column contains y indices, and
-third column denotes the current ring about a location.
+A tibble whose first column contains x indices, second column 
+contains y indices, and third column denotes the current ring about a 
+location.
 }
 \description{
 Determine and store neighbors by Euclidean Distance Constraints
 }
 \note{
-This function avoids testing all points for being with a certain distance
- in order to determine neighbor status of a given point by progressively widening
- a box around the point. Each iteration widens the box by an extra ring, and we
- only test points in the new ring. If at the end of testing a ring there are no
- new neighbors then we stop expanding the box and return the neighbors' coordinates.
- For computational efficiency, this function assumes that all arguments except the
- current point's coordinates have been specified.
+This function avoids testing all points for being with a certain 
+distance in order to determine neighbor status of a given point by 
+progressively widening a box around the point. Each iteration widens the
+box by an extra ring, and we only test points in the new ring. If at the 
+end of testing a ring there are no new neighbors then we stop expanding the
+box and return the neighbors' coordinates. For computational efficiency, 
+this function assumes that all arguments except the current point's 
+coordinates have been specified.
 }
 \examples{
 ## Necessary pre-specified arguments required for the function to work.

@@ -30,80 +30,91 @@ sim2D_binarymap(
 \arguments{
 \item{N}{A scalar value determining the number of images to create.}
 
-\item{xlim, ylim}{These are the 2D image limits. Defaults for both are \code{c(0, 1)}.
-It is not recommended to alter these arguments unless changing the limits has a
-specific practical utility.}
+\item{xlim, ylim}{These are the 2D image limits. Defaults for both are 
+\code{c(0, 1)}. It is not recommended to alter these arguments unless 
+changing the limits has a specific practical utility.}
 
-\item{im.res}{A vector specifying the dimension/resolution of the image. The first entry is
-the number of 'rows' in the lattice/image, and the second entry is the number of
-'columns' in the lattice/image.}
+\item{im.res}{A vector specifying the dimension/resolution of the image. 
+The first entry is the number of 'rows' in the lattice/image, and the 
+second entry is the number of columns' in the lattice/image.}
 
-\item{radius.bounds}{A 2-element vector whose first and second entries determine
-the minimum and maximum radius sizes, respectively; these will be the bounds
-of the uniform distribution used to draw the radii. If \code{sub.area = TRUE}, then
-use \code{radius.bounds.min.sa} and \code{radius.bounds.max.sa}.}
+\item{radius.bounds}{A 2-element vector whose first and second entries 
+determine the minimum and maximum radius sizes, respectively; these will 
+be the bounds of the uniform distribution used to draw the radii. If 
+\code{sub.area = TRUE}, then use \code{radius.bounds.min.sa} and 
+\code{radius.bounds.max.sa}.}
 
-\item{lambda}{A scalar value specifying the mean/intensity value of the Poisson process.
-If \code{random.lambda = FALSE} then this is the parameter used to generate the binary
-image for each subject. If \code{random.lambda = TRUE}, then this is the mean parameter
-in the distribution used to draw subject-specific lambda.}
+\item{lambda}{A scalar value specifying the mean/intensity value of the 
+Poisson process. If \code{random.lambda = FALSE} then this is the parameter
+used to generate the binary image for each subject. If 
+\code{random.lambda = TRUE}, then this is the mean parameter in the
+distribution used to draw subject-specific lambda.}
 
-\item{random.lambda}{\code{random.lambda = TRUE} allows the lambda (mean/intensity)
-parameter in the Poisson process to vary randomly by subject.}
+\item{random.lambda}{\code{random.lambda = TRUE} allows the lambda 
+(mean/intensity) parameter in the Poisson process to vary randomly by 
+subject.}
 
-\item{lambda.sd}{Only utilized when \code{random.lambda = TRUE}, and specifies the
-standard deviation in the distribution used to draw subject-specific lambda.}
+\item{lambda.sd}{Only utilized when \code{random.lambda = TRUE}, and 
+specifies the standard deviation in the distribution used to draw 
+subject-specific lambda.}
 
-\item{lambda.bound}{Only utilized when \code{random.lambda = TRUE}, and allows the
-user to specify a lower and upper bound for the subject-specific lambda; if the
-randomly selected value is outside of this range, then another draw is taken. This
-continues until a value is selected within the specified bounds. If no bounds are
-desired then specify \code{lambda.bound = NULL}.}
+\item{lambda.bound}{Only utilized when \code{random.lambda = TRUE}, and 
+allows the user to specify a lower and upper bound for the subject-specific
+lambda; if the randomly selected value is outside of this range, then 
+another draw is taken. This continues until a value is selected within the
+specified bounds. If no bounds are desired then specify 
+\code{lambda.bound = NULL}.}
 
-\item{prior}{Only utilized when \code{random.lambda = TRUE}, and specifies the
-distribution from which to draw the subject-specific lambda.
+\item{prior}{Only utilized when \code{random.lambda = TRUE}, and specifies
+the distribution from which to draw the subject-specific lambda.
 Options are \code{c("gaussian", "gamma")}.}
 
-\item{sub.area}{When \code{sub.area = TRUE}, a random sub-section of the image is
-chosen, within which the Poisson process is used to generate the binary image.}
+\item{sub.area}{When \code{sub.area = TRUE}, a random sub-section of the 
+image is chosen, within which the Poisson process is used to generate the
+binary image.}
 
 \item{min.sa, max.sa}{Only utilized when \code{sub.area = TRUE}, and
-determines the width and height of the  minimum and maximum sub-areas; e.g., if
-\code{min.sa = c(0.1, 0.1)}, then the smallest possible random sub-area is a
-0.1 x 0.1 square.}
+determines the width and height of the  minimum and maximum sub-areas; 
+e.g., if \code{min.sa = c(0.1, 0.1)}, then the smallest possible random 
+sub-area is a 0.1 x 0.1 square.}
 
-\item{radius.bounds.min.sa, radius.bounds.max.sa}{Only utilized when \code{sub.area = TRUE}, and
-specifies \code{radius.bounds} for the minimum and maximum sub-areas, respectively.
-This information is used to adaptively alter the bounds in between the minimum and maximum
-sub-areas.}
+\item{radius.bounds.min.sa, radius.bounds.max.sa}{Only utilized when 
+\code{sub.area = TRUE}, and specifies \code{radius.bounds} for the minimum
+and maximum sub-areas, respectively. This information is used to adaptively
+alter the bounds in between the minimum and maximum sub-areas.}
 
 \item{print.subj.sa, print.lambda, print.iter}{These arguments are either
 \code{TRUE} or \code{FALSE}, and define print options for checking that the
-function is working as the user intends. \code{print.subj.sa = TRUE} prints the x-
-and y-limits for each subject's sub-area. \code{print.lambda = TRUE} prints each
-subject's mean and realized events; the means will be the same unless \code{random.lambda = TRUE},
-but the number of realized events will always vary. \code{print.iter = TRUE} is
-only used when \code{random.lambda = TRUE} and \code{is.null(lambda.bound) = FALSE},
-and shows iterations for re-drawing when the randomly selected intensity is outside
-the specified bounds.}
+function is working as the user intends. \code{print.subj.sa = TRUE} prints
+the x-and y-limits for each subject's sub-area. \code{print.lambda = TRUE} 
+prints each subject's mean and realized events; the means will be the same
+unless \code{random.lambda = TRUE}, but the number of realized events will
+always vary. \code{print.iter = TRUE} is only used when 
+\code{random.lambda = TRUE} and \code{is.null(lambda.bound) = FALSE}, and
+shows iterations for re-drawing when the randomly selected intensity is 
+outside the specified bounds.}
 
-\item{store.type}{One of \code{c("list", "matrix", "all")}. When \code{store.type = "list"},
-the output is a list where each element is a matrix defining a subject image. If
-\code{store.type = "matrix"}, then the images are vectorized by row and each row
-of the output matrix contains an image vector for a single subject.}
+\item{store.type}{One of \code{c("list", "matrix", "all")}. When 
+\code{store.type = "list"}, the output is a list where each element is a 
+matrix defining a subject image. If \code{store.type = "matrix"}, then the
+images are vectorized by row and each row of the output matrix contains an 
+image vector for a single subject.}
 
-\item{output.randset}{Logical. When \code{TRUE}, stores the data frame of original draws from
-the HPPP and and random radii from \code{sim2D_RandSet_HPPP()}. This data frame is stored in the
-first element of the output list named \code{randset}. The second element of the output list is a 
-list/matrix of the final subject images depending on \code{store.type} and named \code{images}.}
+\item{output.randset}{Logical. When \code{TRUE}, stores the data frame of 
+original draws from the HPPP and and random radii from 
+\code{sim2D_RandSet_HPPP()}. This data frame is stored in the first element
+of the output list named \code{randset}. The second element of the output 
+list is a  list/matrix of the final subject images depending on 
+\code{store.type} and named \code{images}.}
 }
 \value{
 A list; each element is a matrix of zeroes and ones.
 }
 \description{
-Use a Homogenous Poisson Process to generate random "events", a uniform distribution
-to generate circles of random radii about the events, and take the union to obtain
-a random set. This is mapped onto a lattice to obtain a binary map.
+Use a Homogenous Poisson Process to generate random "events", a uniform 
+distribution to generate circles of random radii about the events, and take
+the union to obtain a random set. This is mapped onto a lattice to obtain 
+a binary map.
 }
 \examples{
 bin_ims <- sim2D_binarymap(N = 5, im.res = c(10, 10), store.type = "list",

@@ -1,46 +1,57 @@
 #' Specify the Correlation Function between Two Locations
 #'
-#' This is primarily for use within correlation builder, and may be altered/expanded to
-#' handle more complicated correlation functions if desired.
+#' This is primarily for use within correlation builder, and may be 
+#' altered/expanded to handle more complicated correlation functions
+#' if desired.
 #'
-#' @param corr.structure One of \code{"ar1"}, \code{"exponential"}, \code{"gaussian"},
-#' or \code{"CS"}. Correlations between locations i and j are \code{rho}\eqn{^{d}} for
-#' \code{corr.structure = "ar1"}, \eqn{exp(-phi * d)} for \code{corr.structure = "exponential"},
-#' \eqn{exp(-phi * d ^ 2)} for \code{corr.structure = "gaussian"}, and \code{rho} when
-#' \code{corr.structure = "CS"}. Note that \code{d} is the Euclidean distance between
-#' locations i and j.
-#' @param im.res A vector defining the dimension of spatial data. The first entry is the
-#' number of rows and the second  entry is the number of columns.
-#' @param rho This is the maximum possible correlation between locations i and j. For all i,j
-#' \code{rho} MUST be between -1 and 1.
-#' @param phi A scalar value greater than 0 that determines the decay of correlation.
-#' This argument is only utilized when \code{corr.structure \%in\% c("exponential", "gaussian")}.
-#' @param round.d If \code{round.d = TRUE}, then d is rounded to the nearest whole number.
-#' @param corr.min Scalar value to specify the minimum non-zero correlation. Any correlations below
-#' \code{corr.min} are set to 0. Especially for high image resolution using this option can result
-#' in a sparser covariance matrix, which may significantly speed up draws when using \code{spam}.
-#' This option is preferred to using \code{neighborhood} and associated arguments when the primary
-#' concern is to avoid very small correlations and improve computation efficiency. Default is \code{NULL},
-#' which places no restrictions on the correlations.
-#' @param i,j,k,v These are the coordinates for the two locations. Location 1 has coordinates
-#' (i, j) and location 2 has coordinates (k, v).
-#' @param neighborhood Defines the neighborhood within which marginal correlations are non-zero. The default
-#' is \code{"none"}, which allows marginal correlations to extend indefinitely. \code{neighborhood = "round"}
-#' defines a circular neighborhood about locations and \code{neighborhood = "rectangle"} defines a
-#' rectangular neighborhood about locations.
-#' @param r If \code{neighborhood = "round"}, then if locations i,j are separated by
-#' distance \eqn{d \ge r}, the correlation between them is zero.
-#' @param w,h If \code{neighborhood = "rectangle"} then w and h are the number of locations
-#' to the left/right and above/below a location i that define its neighborhood. Any locations
-#' outside this neighborhood have have zero correlation with location i.
-#' @return A single element vector containing the correlation between spatial locations with indices (i, j) and (k, v).
+#' @param corr.structure One of \code{"ar1"}, \code{"exponential"}, 
+#' \code{"gaussian"}, or \code{"CS"}. Correlations between locations i 
+#' and j are \code{rho}\eqn{^{d}} for \code{corr.structure = "ar1"}, 
+#' \eqn{exp(-phi * d)} for \code{corr.structure = "exponential"},
+#' \eqn{exp(-phi * d ^ 2)} for \code{corr.structure = "gaussian"}, and 
+#' \code{rho} when \code{corr.structure = "CS"}. Note that \code{d} is the
+#'  Euclidean distance between locations i and j.
+#' @param im.res A vector defining the dimension of spatial data. The first
+#' entry is the number of rows and the second  entry is the number of columns.
+#' @param rho This is the maximum possible correlation between locations i and
+#' j. For all i,j \code{rho} MUST be between -1 and 1.
+#' @param phi A scalar value greater than 0 that determines the decay of 
+#' correlation. This argument is only utilized when \code{corr.structure 
+#' \%in\% c("exponential", "gaussian")}.
+#' @param round.d If \code{round.d = TRUE}, then d is rounded to the nearest
+#' whole number.
+#' @param corr.min Scalar value to specify the minimum non-zero correlation. 
+#' Any correlations below \code{corr.min} are set to 0. Especially for high 
+#' image resolution using this option can result in a sparser covariance 
+#' matrix, which may significantly speed up draws when using \code{spam}.
+#' This option is preferred to using \code{neighborhood} and associated 
+#' arguments when the primary concern is to avoid very small correlations 
+#' and improve computation efficiency. Default is \code{NULL}, which places
+#' no restrictions on the correlations.
+#' @param i,j,k,v These are the coordinates for the two locations. Location 
+#' 1 has coordinates (i, j) and location 2 has coordinates (k, v).
+#' @param neighborhood Defines the neighborhood within which marginal 
+#' correlations are non-zero. The default is \code{"none"}, which allows 
+#' marginal correlations to extend indefinitely. \code{neighborhood = "round"}
+#' defines a circular neighborhood about locations and 
+#' \code{neighborhood = "rectangle"} defines a rectangular neighborhood about
+#' locations.
+#' @param r If \code{neighborhood = "round"}, then if locations i,j are 
+#' separated by distance \eqn{d \ge r}, the correlation between them is zero.
+#' @param w,h If \code{neighborhood = "rectangle"} then w and h are the number
+#' of locations to the left/right and above/below a location i that define its
+#' neighborhood. Any locations outside this neighborhood have have zero 
+#' correlation with location i.
+#' @return A single element vector containing the correlation between spatial 
+#' locations with indices (i, j) and (k, v).
 #' @examples
 #' ## examples
 #' corr_fun(corr.structure = "ar1", im.res = c(3, 3), rho = 0.5,
 #'          neighborhood = "round", r = 6, i = 1, j = 2, k = 2, v = 3)
 #'
 #' corr_fun(corr.structure = "ar1", im.res = c(3, 3), rho = 0.5,
-#'          neighborhood = "rectangle", w = 1, h = 1, i = 1, j = 2, k = 2, v = 3)
+#'          neighborhood = "rectangle", w = 1, h = 1, 
+#'          i = 1, j = 2, k = 2, v = 3)
 #'
 #' @export
 corr_fun <- function(corr.structure, im.res, corr.min = NULL,
@@ -54,21 +65,21 @@ corr_fun <- function(corr.structure, im.res, corr.min = NULL,
     }
   }
 
-  d = sqrt((i - k)^2 + (j - v)^2)
-  if (round.d == TRUE) {d = round(d)}
+  d <- sqrt((i - k)^2 + (j - v)^2)
+  if (round.d == TRUE) {d <- round(d)}
 
   if (neighborhood == "none") {
     if (corr.structure == "CS") {
-      rho.ij.kv = rho
+      rho.ij.kv <- rho
     }
     if (corr.structure == "ar1") {
-      rho.ij.kv = rho^d
+      rho.ij.kv <- rho^d
     }
     if (corr.structure == "exponential") {
-      rho.ij.kv = exp(-phi * d)
+      rho.ij.kv <- exp(-phi * d)
     }
     if (corr.structure == "gaussian") {
-      rho.ij.kv = exp(-phi * d ^ 2)
+      rho.ij.kv <- exp(-phi * d ^ 2)
     }
   }
 
@@ -76,19 +87,19 @@ corr_fun <- function(corr.structure, im.res, corr.min = NULL,
     if ( (k %in% seq(i - h, i + h)) & (v %in% seq(j - w,j + w)) & (i != k | j != v)){
 
       if (corr.structure == "CS") {
-        rho.ij.kv = rho
+        rho.ij.kv <- rho
       }
       if (corr.structure == "ar1") {
-        rho.ij.kv = rho^d
+        rho.ij.kv <- rho^d
       }
       if (corr.structure == "exponential") {
-        rho.ij.kv = exp(-phi * d)
+        rho.ij.kv <- exp(-phi * d)
       }
       if (corr.structure == "gaussian") {
-        rho.ij.kv = exp(-phi * d ^ 2)
+        rho.ij.kv <- exp(-phi * d ^ 2)
       }
     } else {
-      rho.ij.kv = 0
+      rho.ij.kv <- 0
     }
   }
 
@@ -96,19 +107,19 @@ corr_fun <- function(corr.structure, im.res, corr.min = NULL,
     if ( ((i - k)^2 + (j - v)^2 <= r^2) & (i != k | j != v)){
 
       if (corr.structure == "CS") {
-        rho.ij.kv = rho
+        rho.ij.kv <- rho
       }
       if (corr.structure == "ar1") {
-        rho.ij.kv = rho^d
+        rho.ij.kv <- rho^d
       }
       if (corr.structure == "exponential") {
-        rho.ij.kv = exp(-phi * d)
+        rho.ij.kv <- exp(-phi * d)
       }
       if (corr.structure == "gaussian") {
-        rho.ij.kv = exp(-phi * d ^ 2)
+        rho.ij.kv <- exp(-phi * d ^ 2)
       }
     } else {
-      rho.ij.kv = 0
+      rho.ij.kv <- 0
     }
   }
   if (is.null(corr.min) == FALSE) {

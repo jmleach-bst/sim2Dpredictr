@@ -11,22 +11,25 @@
 #'     \item A vector of length \code{nrow(R)} (equivalently \code{nrow(R)})
 #'      containing means for the MVN.
 #'  }
-#' @param L,R \code{L} and \code{R} are lower and upper triangular matrices, respectively,
-#'  and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
-#'  Obtain \code{L} or \code{R} via \code{chol_s2Dp()} with settings
-#'  \code{triangle = "lower"} or \code{triangle = "upper"}, respectively.
-#'  Specify either \code{L} or \code{R}, but NOT both.
-#' @param use.spam Logical. If \code{use.spam = TRUE} then use tools from the R package \code{spam};
-#' otherwise, base R functions are employed. For large dimension MVN with sparse correlation
-#' structure, \code{spam} is recommended; otherwise, base R may be faster. Defaults to \code{FALSE}.
-#' Requires either the covariance matrix \code{S} or precision matrix, \code{Q}, that corresponds to the
-#' Cholesky factor.
-#' @param use.MASS Logical. When \code{TRUE} draws X from MVN using \code{mvrnorm} from \code{MASS}.
-#' Note that this requires specification of the covariance matrix, \code{S}. Specifying the precision
-#' matrix instead may slow down the process for large dimensions. Recommended to use \code{spam} to
-#' generate draws when specifying a precision matrix, \code{Q}.
-#' @param S,Q A covariance or precision matrix respectively. These are for use with \code{spam},
-#' and can be extracted from output of \code{\link[sim2Dpredictr]{chol_s2Dp}} after choosing
+#' @param L,R \code{L} and \code{R} are lower and upper triangular matrices, 
+#' respectively, and are the Cholesky factor(s) of the desired covariance 
+#' matrix for the MVN. Obtain \code{L} or \code{R} via \code{chol_s2Dp()} 
+#' with settings \code{triangle = "lower"} or \code{triangle = "upper"}, 
+#' respectively. Specify either \code{L} or \code{R}, but NOT both.
+#' @param use.spam Logical. If \code{use.spam = TRUE} then use tools from the
+#' R package \code{spam}; otherwise, base R functions are employed. For large
+#' dimension MVN with sparse correlation structure, \code{spam} is 
+#' recommended; otherwise, base R may be faster. Defaults to \code{FALSE}.
+#' Requires either the covariance matrix \code{S} or precision matrix, 
+#' \code{Q}, that corresponds to the Cholesky factor.
+#' @param use.MASS Logical. When \code{TRUE} draws X from MVN using 
+#' \code{mvrnorm} from \code{MASS}. Note that this requires specification of
+#' the covariance matrix, \code{S}. Specifying the precision matrix instead 
+#' may slow down the process for large dimensions. Recommended to use 
+#' \code{spam} to generate draws when specifying a precision matrix, \code{Q}.
+#' @param S,Q A covariance or precision matrix respectively. These are for 
+#' use with \code{spam}, and can be extracted from output of 
+#' \code{\link[sim2Dpredictr]{chol_s2Dp}} after choosing 
 #' \code{return.cov = TRUE} or \code{return.prec = TRUE}, respectively.
 #' @param X.categorical Default is \code{X.categorical = FALSE}. If
 #' \code{X.categorical = TRUE} then thresholds are applied to categorize
@@ -36,30 +39,37 @@
 #' @param X.category.type Tells R how to categorize the data. Options are
 #'  \code{X.category.type = c("percentile", "manual")}.
 #'  If \code{X.category.type = "percentile"} then the data are divided into
-#'  percentiles based on \code{X.num.categories}; e.g. if \code{X.num.categories = 4}
-#'  then the values are divided into quartiles, and values in Q1 equal 0, between Q1
-#'  and Q2 equal 1, between Q2 and Q3 equal 2, and greater than Q3 equal 3.
+#'  percentiles based on \code{X.num.categories}; e.g. if 
+#'  \code{X.num.categories = 4} then the values are divided into quartiles, 
+#'  and values in Q1 equal 0, between Q1 and Q2 equal 1, between Q2 and Q3 
+#'  equal 2, and greater than Q3 equal 3. 
 #'  If \code{X.category.type = "manual"} then specify the cutoff points with
 #'  \code{X.manual.thresh}.
-#' @param X.percentiles A vector of percentiles to be used in thresholding when
-#' \code{X.categorical = TRUE} and \code{X.category.type = "percentile"}. The length
-#' of this vector should equal the number of categories minus one, and all values
-#' should be between zero and one.
-#' @param X.manual.thresh A vector containing the thresholds for categorizing the
-#'  values; e.g. if \code{X.num.categories = 4} and \code{X.manual.thresh = c(-3, 1, 17)},
-#'  then values less than -3 are set to 0, equal or greater than -3 and less than 1
-#'  are set to 1, equal or greater than 1 but less than 17 are set to 2, and equal or
-#'  greater than 17 are set to 3. Note that \code{length(X.manual.thresh)} must always
-#'  equal \code{X.num.categories - 1}.
-#' @param X.cat.names A vector of category names. If \code{X.cat.names = NULL} then
-#'  then the initial integers assigned are left as the values; the names in
-#'  \code{X.cat.names} are assigned in ascending order.
+#' @param X.percentiles A vector of percentiles to be used in thresholding 
+#' when \code{X.categorical = TRUE} and \code{X.category.type = "percentile"}.
+#' The length of this vector should equal the number of categories minus one,
+#' and all values should be between zero and one.
+#' @param X.manual.thresh A vector containing the thresholds for categorizing
+#' the values; e.g. if \code{X.num.categories = 4} and 
+#' \code{X.manual.thresh = c(-3, 1, 17)}, then values less than -3 are set to
+#' 0, equal or greater than -3 and less than 1 are set to 1, equal or greater
+#' than 1 but less than 17 are set to 2, and equal or greater than 17 are set
+#' to 3. Note that \code{length(X.manual.thresh)} must always equal 
+#' \code{X.num.categories - 1}.
+#' @param X.cat.names A vector of category names. If \code{X.cat.names = NULL}
+#' then the initial integers assigned are left as the values; the names in
+#' \code{X.cat.names} are assigned in ascending order.
 #' @examples
 #' ## verify MVN with base R
 #' set.seed(732)
-#' Lex <- chol_s2Dp(corr.structure = "ar1", im.res = c(3, 3), rho = 0.25,
-#'                  sigma = 1, use.spam = FALSE, corr.min = 0.02,
-#'                  triangle = "lower", return.cov = TRUE)
+#' Lex <- chol_s2Dp(corr.structure = "ar1",
+#'                  im.res = c(3, 3), 
+#'                  rho = 0.25,
+#'                  sigma = 1, 
+#'                  use.spam = FALSE, 
+#'                  corr.min = 0.02,
+#'                  triangle = "lower", 
+#'                  return.cov = TRUE)
 #' XbR = sim_MVN_X(N = 1000, mu = 0, L = Lex$L)
 #'
 #' apply(XbR, 2, mean)
@@ -87,13 +97,13 @@
 #'                    X.cat.names = c("A", "B", "C"))
 #' Xtest
 #'
-#' @return Matrix of dimension \code{N} x \code{(nrow(L))} (or equivalently \code{N} x \code{(nrow(R))})
-#' where each row is draw from MVN, and each column represents a different "variable";
-#' e.g. location in an image.
-#' @note This function requires the Cholesky decomposition of the desired covariance
-#'  matrix for the MVN; this allows for using this function in simulating multiple
-#'  datasets of \code{N} MVN draws while only taking the Cholesky decomposition of
-#'  the covariance matrix once.
+#' @return Matrix of dimension \code{N} x \code{(nrow(L))} (or equivalently
+#' \code{N} x \code{(nrow(R))}) where each row is draw from MVN, and each 
+#' column represents a different "variable"; e.g. location in an image.
+#' @note This function requires the Cholesky decomposition of the desired 
+#' covariance matrix for the MVN; this allows for using this function in 
+#' simulating multiple datasets of \code{N} MVN draws while only taking the
+#' Cholesky decomposition of the covariance matrix once.
 #' @importFrom stats rnorm quantile
 #' @importFrom Rdpack reprompt
 #' @importFrom MASS mvrnorm
@@ -115,7 +125,8 @@ sim_MVN_X <- function(N, mu = 0, L = NULL, R = NULL,
                       X.cat.names = NULL){
 
   # Predictable errors and warnings
-  if ( (is.null(R) == TRUE) & (is.null(L) == TRUE) & (use.MASS == FALSE & is.null(S) == TRUE) ){
+  if ( (is.null(R) == TRUE) & (is.null(L) == TRUE) & 
+       (use.MASS == FALSE & is.null(S) == TRUE) ){
     stop("Function requires either specification of L or R unless using MASS.")
   }
   if ( (is.null(R) == FALSE) & (is.null(L) == FALSE) ){
@@ -216,10 +227,14 @@ sim_MVN_X <- function(N, mu = 0, L = NULL, R = NULL,
   if (X.categorical == TRUE) {
 
     # Determine/ensure that num.categories is a whole number.
-    is.wholenumber <- function(x, tol = .Machine$double.eps^2)  abs(x - round(x)) < tol
+    is.wholenumber <- function(x, 
+                               tol = .Machine$double.eps^2
+                               ){
+      abs(x - round(x)) < tol
+    }  
     if (is.wholenumber(X.num.categories) == FALSE) {
       warning("Rounding the number of categories to the nearest whole number.")
-      X.num.categories = round(X.num.categories)
+      X.num.categories <- round(X.num.categories)
     }
 
     if (X.category.type == "percentile") {

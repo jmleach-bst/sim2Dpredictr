@@ -1,7 +1,8 @@
 #' Determine rejections
 #'
 #' @inheritParams sample_FP_Power
-#' @return A vector of hypothesis testing rejection indicators, where 1 indicates a rejection and 0 otherwise.
+#' @return A vector of hypothesis testing rejection indicators, where 1 
+#' indicates a rejection and 0 otherwise.
 #'
 make_rejection <- function(B, reject.threshold, test.statistic) {
   rejections <- rep(0, length(B))

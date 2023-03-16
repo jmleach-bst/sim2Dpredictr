@@ -9,21 +9,24 @@ generate_multinom_probs(V = NULL, B = NULL, X = NULL, X.incl.X0 = FALSE)
 \arguments{
 \item{V}{A numeric value stating the number of categories desired.}
 
-\item{B}{A list, each element of which contains a parameter vector. The list should have 
-length \code{V - 1}, i.e., should contain parameter values associated with all categories 
-except the reference category, following Agresti (2007). Alternatively, \code{B} may be a 
-list of length \code{V} if one desires to specify parameters for every category, i.e., 
-the over-parameterized model used in Friedman (2010).}
+\item{B}{A list, each element of which contains a parameter vector. The 
+list should have length \code{V - 1}, i.e., should contain parameter values
+associated with all categories except the reference category, following 
+Agresti (2007). Alternatively, \code{B} may be a list of length \code{V} 
+if one desires to specify parameters for every category, i.e., the
+over-parameterized model used in Friedman (2010).}
 
-\item{X}{A matrix, each row of which contains subject covariate/predictor values.}
+\item{X}{A matrix, each row of which contains subject covariate/predictor 
+values.}
 
-\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} should contain column of 1's for
-the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.}
+\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} should contain column
+of 1's for the intercept. Otherwise, a column of 1's is generated 
+internally. Default is \code{FALSE}.}
 }
 \value{
-A matrix containing subject-specific probabilities for each category of the
-multinomial distribution. The number of rows equals \code{nrow(X)} and the number of 
-columns equals \code{V}.
+A matrix containing subject-specific probabilities for each 
+category of the multinomial distribution. The number of rows equals 
+\code{nrow(X)} and the number of columns equals \code{V}.
 }
 \description{
 Obtain probabilities for each category of a multinomial distribution
@@ -49,7 +52,8 @@ bu <- list(b1 = c(1, 0.25, -0.25),
 ## subject specific probabilities for each category
 generate_multinom_probs(V = vt, X = xt, B = bt)
 
-## subject specific probabilities for each category (over-parameterized model)
+## subject specific probabilities for each category 
+## (over-parameterized model)
 generate_multinom_probs(V = vt, X = xt, B = bu)
 
 }

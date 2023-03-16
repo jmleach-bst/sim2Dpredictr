@@ -30,30 +30,34 @@ sim_Y_MVN_X(
 \arguments{
 \item{N}{The number of draws to take from MVN; i.e., the number of subjects.}
 
-\item{B}{A vector parameter values; i.e. "betas". Note that \code{length(B)}
-must equal \code{p + 1 = n.row * n.col + 1}; e.g. for normal outcomes
-\eqn{Y = XB + e} with \code{Y} a scalar outcome and \code{e} the random error.
-Note that when \code{dist = "multinomial"} then \code{B} should be a list with
-length equal to \code{V - 1}, i.e., should contain parameter values associated
-with all categories except the reference category. Alternatively, when \code{dist = "multinomial"} 
-\code{B} may be a list of length \code{V} if one desires to specify parameters for 
-every category, i.e., the over-parameterized model used in Friedman (2010).}
+\item{B}{A vector parameter values; i.e. "betas". Note that 
+\code{length(B)} must equal \code{p + 1 = n.row * n.col + 1}; e.g. for 
+normal outcomes \eqn{Y = XB + e} with \code{Y} a scalar outcome and 
+\code{e} the random error. Note that when \code{dist = "multinomial"} then
+\code{B} should be a list with length equal to \code{V - 1}, i.e., should
+contain parameter values associated with all categories except the 
+reference category. Alternatively, when \code{dist = "multinomial"}  
+\code{B} may be a list of length \code{V} if one desires to specify 
+parameters for every category, i.e., the over-parameterized model used in 
+Friedman (2010).}
 
-\item{L, R}{\code{L} and \code{R} are lower and upper triangular matrices, respectively,
-and are the Cholesky factor(s) of the desired covariance matrix for the MVN.
-Obtain \code{L} or \code{R} via \code{chol_s2Dp()} with settings
-\code{triangle = "lower"} or \code{triangle = "upper"}, respectively.
-Specify either \code{L} or \code{R}, but NOT both.}
+\item{L, R}{\code{L} and \code{R} are lower and upper triangular matrices, 
+respectively, and are the Cholesky factor(s) of the desired covariance 
+matrix for the MVN. Obtain \code{L} or \code{R} via \code{chol_s2Dp()} 
+with settings \code{triangle = "lower"} or \code{triangle = "upper"}, 
+respectively. Specify either \code{L} or \code{R}, but NOT both.}
 
-\item{S, Q}{A covariance or precision matrix respectively. These are for use with \code{spam},
-and can be extracted from output of \code{\link[sim2Dpredictr]{chol_s2Dp}} after choosing
+\item{S, Q}{A covariance or precision matrix respectively. These are for 
+use with \code{spam}, and can be extracted from output of 
+\code{\link[sim2Dpredictr]{chol_s2Dp}} after choosing 
 \code{return.cov = TRUE} or \code{return.prec = TRUE}, respectively.}
 
-\item{use.spam}{Logical. If \code{use.spam = TRUE} then use tools from the R package \code{spam};
-otherwise, base R functions are employed. For large dimension MVN with sparse correlation
-structure, \code{spam} is recommended; otherwise, base R may be faster. Defaults to \code{FALSE}.
-Requires either the covariance matrix \code{S} or precision matrix, \code{Q}, that corresponds to the
-Cholesky factor.}
+\item{use.spam}{Logical. If \code{use.spam = TRUE} then use tools from the
+R package \code{spam}; otherwise, base R functions are employed. For large
+dimension MVN with sparse correlation structure, \code{spam} is 
+recommended; otherwise, base R may be faster. Defaults to \code{FALSE}.
+Requires either the covariance matrix \code{S} or precision matrix, 
+\code{Q}, that corresponds to the Cholesky factor.}
 
 \item{mu}{One of the following:
 \itemize{
@@ -62,40 +66,46 @@ Cholesky factor.}
     containing means for the MVN.
 }}
 
-\item{rand.err}{A vector for the random error standard deviation when \code{dist = "gaussian"},
-or thresholding is used to obtain non-Normal draws. Must have length 1 or length N.}
+\item{rand.err}{A vector for the random error standard deviation when 
+\code{dist = "gaussian"}, or thresholding is used to obtain non-Normal 
+draws. Must have length 1 or length N.}
 
 \item{dist}{The distribution of the scalar outcome.
 \itemize{
     \item \code{dist = "gaussian"} has \eqn{Y = XB + e}, where
     \eqn{e ~ N(0, rand.err)}.
-    \item \code{dist = "binomial"}: Y is drawn from a binomial distribution with probability
-    of "success" equal to \eqn{1 / (1 + 1 / exp(XB))} using \code{rbinom()} when 
-    \code{binary.method = "traditional"}. If \code{binary.method = "gaussian"}, then simulation 
-    is based on a cutoff using \code{binary.cutoff}.
-    \item \code{dist = "multinomial"}: Y is drawn from \code{sample()} using probabilities
-    generated based on Chapter 6.1.3 of Agresti (2007) when \code{length(B) = V - 1}
-     or Friedman (2010) when the \code{length(B) = V}. Threshold-based approaches are not
-    currently supported.
-    \item \code{dist = "poisson"}: Y is drawn from \eqn{Poisson(exp(XB))} using
-    \code{rpois()}.
+    \item \code{dist = "binomial"}: Y is drawn from a binomial distribution
+    with probability of "success" equal to \eqn{1 / (1 + 1 / exp(XB))} 
+    using \code{rbinom()} when \code{binary.method = "traditional"}. If 
+    \code{binary.method = "gaussian"}, then simulation  is based on a 
+    cutoff using \code{binary.cutoff}.
+    \item \code{dist = "multinomial"}: Y is drawn from \code{sample()} 
+    using probabilities generated based on Chapter 6.1.3 of Agresti (2007)
+    when \code{length(B) = V - 1} or Friedman (2010) when the 
+    \code{length(B) = V}. Threshold-based approaches are not currently 
+    supported.
+    \item \code{dist = "poisson"}: Y is drawn from \eqn{Poisson(exp(XB))}
+    using \code{rpois()}.
 }}
 
-\item{V}{A numeric value stating the number of categories desired when \code{dist = "multinomial"}.}
+\item{V}{A numeric value stating the number of categories desired when 
+\code{dist = "multinomial"}.}
 
-\item{incl.subjectID}{When \code{incl.subjectID = TRUE} a column of subject indices
-is generated.}
+\item{incl.subjectID}{When \code{incl.subjectID = TRUE} a column of subject
+indices is generated.}
 
 \item{threshold.method}{One of \code{"none", "manual", "percentile", "round"}.
-When \code{"none"} draws from Binomial or Poisson distributions are taken subject-wise
-using base \code{R} functions. For the remaining options, draws are first taken from a
-Normal distribution and then thresholded. \code{"manual"} uses \code{Y.thresh} to manually
-select a cutoff, \code{"percentile"} uses \code{Y.thresh} to select percentiles used to bin
-outcomes, and \code{"round"} sets values equal or less than 0 to 0, and rounds all positive
-values to the nearest whole number.}
+When \code{"none"} draws from Binomial or Poisson distributions are taken 
+subject-wise using base \code{R} functions. For the remaining options, 
+draws are first taken from a Normal distribution and then thresholded. 
+\code{"manual"} uses \code{Y.thresh} to manually select a cutoff, 
+\code{"percentile"} uses \code{Y.thresh} to select percentiles used to 
+bin outcomes, and \code{"round"} sets values equal or less than 0 to 0, 
+and rounds all positive values to the nearest whole number.}
 
-\item{Y.thresh}{A manual value used to threshold when \code{threshold.method = "manual"}; values
-equal or greater than the cutoff are assigned 1 and all others 0. When \code{threshold.method = "percentile"},
+\item{Y.thresh}{A manual value used to threshold when 
+\code{threshold.method = "manual"}; values equal or greater than the cutoff
+are assigned 1 and all others 0. When \code{threshold.method = "percentile"},
 a percentile to use to bin outcomes.}
 
 \item{X.categorical}{Default is \code{X.categorical = FALSE}. If
@@ -108,20 +118,22 @@ in which to divide the data.}
 \item{X.category.type}{Tells R how to categorize the data. Options are
 \code{X.category.type = c("percentile", "manual")}.
 If \code{X.category.type = "percentile"} then the data are divided into
-percentiles based on \code{X.num.categories}; e.g. if \code{X.num.categories = 4}
-then the values are divided into quartiles, and values in Q1 equal 0, between Q1
-and Q2 equal 1, between Q2 and Q3 equal 2, and greater than Q3 equal 3.
+percentiles based on \code{X.num.categories}; e.g. if 
+\code{X.num.categories = 4} then the values are divided into quartiles, 
+and values in Q1 equal 0, between Q1 and Q2 equal 1, between Q2 and Q3 
+equal 2, and greater than Q3 equal 3. 
 If \code{X.category.type = "manual"} then specify the cutoff points with
 \code{X.manual.thresh}.}
 
-\item{X.manual.thresh}{A vector containing the thresholds for categorizing the
-values; e.g. if \code{X.num.categories = 4} and \code{X.manual.thresh = c(-3, 1, 17)},
-then values less than -3 are set to 0, equal or greater than -3 and less than 1
-are set to 1, equal or greater than 1 but less than 17 are set to 2, and equal or
-greater than 17 are set to 3. Note that \code{length(X.manual.thresh)} must always
-equal \code{X.num.categories - 1}.}
+\item{X.manual.thresh}{A vector containing the thresholds for categorizing
+the values; e.g. if \code{X.num.categories = 4} and 
+\code{X.manual.thresh = c(-3, 1, 17)}, then values less than -3 are set to
+0, equal or greater than -3 and less than 1 are set to 1, equal or greater
+than 1 but less than 17 are set to 2, and equal or greater than 17 are set
+to 3. Note that \code{length(X.manual.thresh)} must always equal 
+\code{X.num.categories - 1}.}
 
-\item{X.cat.names}{A vector of category names. If \code{X.cat.names = NULL} then
+\item{X.cat.names}{A vector of category names. If \code{X.cat.names = NULL}
 then the initial integers assigned are left as the values; the names in
 \code{X.cat.names} are assigned in ascending order.}
 
@@ -131,7 +143,8 @@ then the initial integers assigned are left as the values; the names in
      \item \code{p[y]}, \code{lambda[y]} for Binomial, Poisson, respectively.
  }
 This is useful to see the effect of image parameter selection and beta
-parameter selection on distributional parameters for the outcome of interest.}
+parameter selection on distributional parameters for the outcome of 
+interest.}
 }
 \value{
 A data frame where each row consists of a single subject's data.
@@ -144,9 +157,9 @@ design vectors are used to then simulate scalar outcomes that have
 one of Gaussian, Binomial, Multinomial or Poisson distributions.
 }
 \note{
-Careful parameter selection, i.e. \code{B}, is necessary to ensure that
-simulated outcomes are reasonable; in particular, counts arising from the Poisson
-distribution can be unnaturally large.
+Careful parameter selection, i.e. \code{B}, is necessary to ensure 
+that simulated outcomes are reasonable; in particular, counts arising from
+the Poisson distribution can be unnaturally large.
 }
 \examples{
 ## generate precision matrix and take Cholesky decomposition
@@ -159,7 +172,8 @@ Rcov <- chol_s2Dp(corr.structure = "ar1", im.res = c(5, 5), rho = 0.5,
                   use.spam = FALSE, neighborhood = "none")
 
 ## Define non-zero beta values
-Bex <- beta_builder(row.index = c(3, 3, 4, 4), col.index = c(3, 4, 3, 4),
+Bex <- beta_builder(row.index = c(3, 3, 4, 4), 
+                    col.index = c(3, 4, 3, 4),
                     im.res = c(5, 5),
                     B0 = 0, B.values = rep(1, 4),
                     output.indices = FALSE)
@@ -206,7 +220,9 @@ Pois.ex <- sim_Y_MVN_X(N = Nex, B = Bex,
                        R = Rcov$R, S = Rcov$S,
                        dist = "poisson", print.out = TRUE)
 mean(Pois.ex$Y)
-quantile(Pois.ex$Y, probs = c(0, 0.1, 0.25, 0.45, 0.5, 0.75, 0.9, 0.95, 0.99, 1))
+quantile(Pois.ex$Y, 
+         probs = c(0, 0.1, 0.25, 0.45, 0.5,
+                   0.75, 0.9, 0.95, 0.99, 1))
 hist(Pois.ex$Y)
 }
 \references{

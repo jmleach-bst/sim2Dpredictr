@@ -18,60 +18,70 @@ proximity_builder(
 )
 }
 \arguments{
-\item{im.res}{A vector defining the dimension of spatial data. The first entry is the
-number of rows and the second  entry is the number of columns.}
+\item{im.res}{A vector defining the dimension of spatial data. The first 
+entry is the number of rows and the second  entry is the number of columns.}
 
-\item{neighborhood}{Determines how to assign neighbor status to locations; i.e. 1 for neighbors, 0 otherwise.
-\code{type = "round"} assigns neighbor status to locations within radius \code{r}. \code{type = "ar1"}
-assigns 1 to locations directly above or beside. \code{type = "rectangle"} assigns neighbor status to
-locations within \code{w} units to the left or right and  \code{h} units up or down.}
+\item{neighborhood}{Determines how to assign neighbor status to locations;
+i.e. 1 for neighbors, 0 otherwise. \code{type = "round"} assigns neighbor 
+status to locations within radius \code{r}. \code{type = "ar1"} assigns
+1 to locations directly above or beside. \code{type = "rectangle"} assigns 
+neighbor status to locations within \code{w} units to the left or right 
+and  \code{h} units up or down.}
 
-\item{type}{Specifies either sparse (\code{type = "sparse"}) or full (\code{type = "full"}) proximity matrix.}
+\item{type}{Specifies either sparse (\code{type = "sparse"}) or full 
+(\code{type = "full"}) proximity matrix.}
 
-\item{weight}{Determines how weights are assigned. \code{"distance"} assigns weights as the inverse of
-Euclidean distance times a constant, \code{phi}. \code{"binary"} assigns weights to 1 for neighbors and 0 otherwise.}
+\item{weight}{Determines how weights are assigned. \code{"distance"} 
+assigns weights as the inverse of Euclidean distance times a constant, 
+\code{phi}. \code{"binary"} assigns weights to 1 for neighbors and 0 
+otherwise.}
 
-\item{phi}{When \code{weight = "distance"} a constant by which to multiply the inverse of Euclidean distance.
-Defaults to 1.}
+\item{phi}{When \code{weight = "distance"} a constant by which
+to multiply the inverse of Euclidean distance. Defaults to 1.}
 
-\item{r, h, w}{When \code{neighborhood = "round"}, \code{r} specifies the radius within which other locations
-are neighbors. When \code{neighborhood = "rectangle"}, \code{w} and \code{h} specify the number of units to
-the left/right and above/below the location are to be counted as neighbors.}
+\item{r, h, w}{When \code{neighborhood = "round"}, \code{r} specifies the 
+radius within which other locations are neighbors. When 
+\code{neighborhood = "rectangle"}, \code{w} and \code{h} specify the number
+of units to the left/right and above/below the location are to be counted 
+as neighbors.}
 
-\item{include.coords}{If \code{type = "sparse"} and \code{include.coords = TRUE}, then the coordinates of
-neighbors are returned along with their indices.}
+\item{include.coords}{If \code{type = "sparse"} and 
+\code{include.coords = TRUE}, then the coordinates of neighbors are
+returned along with their indices.}
 
-\item{print.im}{Allows user to print the 2D "image" matrix with index labels to visually verify that the proximity
-matrix is as expected.}
+\item{print.im}{Allows user to print the 2D "image" matrix with index 
+labels to visually verify that the proximity matrix is as expected.}
 }
 \value{
 A (proximity) matrix.
 }
 \description{
-Generates a proximity matrix where non-zero entries are the weights associated with neighbors, and
-zero entries are not neighbors.
+Generates a proximity matrix where non-zero entries are the weights 
+associated with neighbors, and zero entries are not neighbors.
 }
 \examples{
-## adjacency matrix with sparse structure (i.e., 2 columns) and ar1 neighborhood
-sp.ar1 <- proximity_builder(im.res = c(4, 4),
+## adjacency matrix with sparse structure (i.e., 2 columns) 
+## and ar1 neighborhood
+sp.ar1 <- proximity_builder(im.res = c(3, 3),
                             weight = "binary",
                             neighborhood = "ar1",
                             type = "sparse")
-## adjacency matrix with full structure (i.e., prod(im.dim) rows & columns) and ar1 neighborhood
-full.ar1 <- proximity_builder(im.res = c(4, 4),
+## adjacency matrix with full structure 
+## (i.e., prod(im.dim) rows & columns) and ar1 neighborhood
+full.ar1 <- proximity_builder(im.res = c(3, 3),
                               weight = "binary",
                               neighborhood = "ar1",
                               type = "full")
 
 ## proximity matrix weighted by distance (sparse)
-sp.rnd <- proximity_builder(im.res = c(5, 5),
+sp.rnd <- proximity_builder(im.res = c(3, 3),
                             weight = "distance",
                             neighborhood = "round", r = 2,
                             type = "sparse",
                             include.coords = TRUE)
 
 ## proximity matrix weighted by distance (full)
-full.rnd <- proximity_builder(im.res = c(5, 5),
+full.rnd <- proximity_builder(im.res = c(3, 3),
                               weight = "distance",
                               neighborhood = "round", r = 2,
                               type = "full")

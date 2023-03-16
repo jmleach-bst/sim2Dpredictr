@@ -2,22 +2,25 @@
 #'
 #' @param x,y are the row and column coordinates, respectively.
 #' @param coords A dataframe containing indices and coordinates for the image.
-#' @param im.res A vector containing the number of rows and columns, respectively.
+#' @param im.res A vector containing the number of rows and columns, 
+#' respectively.
 #' @param r A scalar value determining the radius within which other locations
 #' are neighbors to the current location (x, y).
 #' @param print.ring When \code{print.ring = TRUE}, each iteration is shown,
 #' with corresponding information regarding the number of neighbors present
 #' in each ring. This argument primarily exists to allow the user to test
 #' whether the neighborhood structure specified is as desired.
-#' @return A tibble whose first column contains x indices, second column contains y indices, and
-#' third column denotes the current ring about a location.
-#' @note  This function avoids testing all points for being with a certain distance
-#'  in order to determine neighbor status of a given point by progressively widening
-#'  a box around the point. Each iteration widens the box by an extra ring, and we
-#'  only test points in the new ring. If at the end of testing a ring there are no
-#'  new neighbors then we stop expanding the box and return the neighbors' coordinates.
-#'  For computational efficiency, this function assumes that all arguments except the
-#'  current point's coordinates have been specified.
+#' @return A tibble whose first column contains x indices, second column 
+#' contains y indices, and third column denotes the current ring about a 
+#' location.
+#' @note  This function avoids testing all points for being with a certain 
+#' distance in order to determine neighbor status of a given point by 
+#' progressively widening a box around the point. Each iteration widens the
+#' box by an extra ring, and we only test points in the new ring. If at the 
+#' end of testing a ring there are no new neighbors then we stop expanding the
+#' box and return the neighbors' coordinates. For computational efficiency, 
+#' this function assumes that all arguments except the current point's 
+#' coordinates have been specified.
 #' @examples
 #' ## Necessary pre-specified arguments required for the function to work.
 #'
@@ -152,7 +155,7 @@ neighbors_by_dist <- function(x, y, coords, im.res, r,
       num.nb.ring <- 0
     } else {
       nb.ij <- ring.coords[nb.ring == 1, ]
-      nb.ij$ring = rep(ring, nrow(nb.ij))
+      nb.ij$ring <- rep(ring, nrow(nb.ij))
       nb.ij.old <- rbind(nb.ij.old, nb.ij)
       num.nb.ring <- sum(nb.ring)
     }

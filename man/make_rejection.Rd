@@ -7,21 +7,26 @@
 make_rejection(B, reject.threshold, test.statistic)
 }
 \arguments{
-\item{B}{A vector of "true" parameter values. For inference purposes, this can be a vector
-of actual parameter values, or a binary vector indicating non-zero status.}
+\item{B}{A vector of "true" parameter values. For inference purposes, this
+can be a vector of actual parameter values, or a binary vector indicating
+non-zero status.}
 
-\item{reject.threshold}{A list whose first element is the rejection criteria, e.g., the
-minimum t-statistic or maximum p-value for which to reject the null hypothesis. The second
-element is one of \code{c("greater", "less", "2-tailed")}, which tell the function to reject
-when the values in \code{test.statistic} are greater than or less than the threshold,
-the test is a 2-tailed, respectively. In the latter case the function internally calculates
-the upper or lower threshold needed for the 2-tailed test.}
+\item{reject.threshold}{A list whose first element is the rejection 
+criteria, e.g., the minimum t-statistic or maximum p-value for which to
+reject the null hypothesis. The second element is one of 
+\code{c("greater", "less", "2-tailed")}, which tell the function to reject
+when the values in \code{test.statistic} are greater than or less than the
+threshold, the test is a 2-tailed, respectively. In the latter case the 
+function internally calculates the upper or lower threshold needed for the
+2-tailed test.}
 
-\item{test.statistic}{A vector of test statistics; e.g., t-statistics or p-values that
-are used to determine whether or not to reject the null hypothesis.}
+\item{test.statistic}{A vector of test statistics; e.g., t-statistics or
+p-values that are used to determine whether or not to reject the null
+hypothesis.}
 }
 \value{
-A vector of hypothesis testing rejection indicators, where 1 indicates a rejection and 0 otherwise.
+A vector of hypothesis testing rejection indicators, where 1 
+indicates a rejection and 0 otherwise.
 }
 \description{
 Determine rejections

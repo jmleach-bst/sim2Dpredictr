@@ -14,40 +14,48 @@ classify_multiclass(
 )
 }
 \arguments{
-\item{predicted.probs}{A matrix where the number of rows is equal to the number of subjects and the 
-number of columns equals the number of categories. \code{predicted.probs[i, j]} contains the probability 
-that subject \code{i} belongs to category \code{j}.}
+\item{predicted.probs}{A matrix where the number of rows is equal to the 
+number of subjects and the number of columns equals the number of 
+categories. \code{predicted.probs[i, j]} contains the probability that
+subject \code{i} belongs to category \code{j}.}
 
-\item{category.names}{A vector containing the names of each category. The order of names should match 
-the order of columns in \code{predicted.probs}; correspondingly, the length of the vector should equal 
-the number of columns in \code{predicted.probs}.}
+\item{category.names}{A vector containing the names of each category. The 
+order of names should match the order of columns in \code{predicted.probs};
+correspondingly, the length of the vector should equal the number of columns
+in \code{predicted.probs}.}
 
-\item{keep.probs}{Logical. When \code{TRUE}, the output is data frame consisting of the information in 
-\code{predicted.probs} with an additional column \code{predicted.class} that contains the predicted class 
-for each subject. When \code{FALSE}, a vector of the predicted classes is returned.}
+\item{keep.probs}{Logical. When \code{TRUE}, the output is data frame 
+consisting of the information in \code{predicted.probs} with an additional
+column \code{predicted.class} that contains the predicted class for each
+subject. When \code{FALSE}, a vector of the predicted classes is returned.}
 
-\item{B}{A list, each element of which contains a parameter vector. The list should have 
-length \code{V - 1}, i.e., should contain parameter values associated with all categories 
-except the reference category, following Agresti (2007). Alternatively, \code{B} may be a 
-list of length \code{V} if one desires to specify parameters for every category, i.e., 
-the over-parameterized model used in Friedman (2010).}
+\item{B}{A list, each element of which contains a parameter vector. The 
+list should have length \code{V - 1}, i.e., should contain parameter values
+associated with all categories except the reference category, following 
+Agresti (2007). Alternatively, \code{B} may be a list of length \code{V} 
+if one desires to specify parameters for every category, i.e., the
+over-parameterized model used in Friedman (2010).}
 
-\item{X}{A matrix, each row of which contains subject covariate/predictor values.}
+\item{X}{A matrix, each row of which contains subject covariate/predictor 
+values.}
 
-\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} should contain column of 1's for
-the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.}
+\item{X.incl.X0}{Logical. When \code{TRUE}, \code{X} should contain column
+of 1's for the intercept. Otherwise, a column of 1's is generated 
+internally. Default is \code{FALSE}.}
 }
 \value{
-Depending on the option selected for \code{keep.probs}, returns a data frame or vector.
+Depending on the option selected for \code{keep.probs}, returns a 
+data frame or vector.
 }
 \description{
-Classify subjects based on predicted probabilities for each class. The predicted probabilities can
-be input by the user or calculated within-function using parameter estimates and design matrix for
-a multinomial regression model.
+Classify subjects based on predicted probabilities for each class. The 
+predicted probabilities can be input by the user or calculated within 
+function using parameter estimates and design matrix for a multinomial
+regression model.
 }
 \details{
-Classification for each subject is determined based on the category with highest
-predicted probability.
+Classification for each subject is determined based on the category
+with highest predicted probability.
 }
 \examples{
 ## number of categories
@@ -61,13 +69,16 @@ bu <- list(b1 = c(0, 0.25, 0.25),
            b2 = c(0, -0.25, -0.25),
            b3 = c(0, 0.25, -0.25))
 
-## subject specific probabilities for each category (over-parameterized model)
+## subject specific probabilities for each category 
+## (over-parameterized model)
 prp <- generate_multinom_probs(V = vt, X = xt, B = bu)
 
-classify_multiclass(predicted.probs = prp, category.names = c("A", "B", "C"))
+classify_multiclass(predicted.probs = prp, 
+                    category.names = c("A", "B", "C"))
 
 ## generate predicted probabilities within function
-classify_multiclass(predicted.probs = NULL, category.names = c("A", "B", "C"),
+classify_multiclass(predicted.probs = NULL, 
+                    category.names = c("A", "B", "C"),
                     X = xt, B = bu)
                     
 }

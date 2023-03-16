@@ -19,48 +19,56 @@ correlation_builder(
 )
 }
 \arguments{
-\item{corr.structure}{One of \code{"ar1"}, \code{exponential}, \code{gaussian},
-or \code{"CS"}. Correlations between locations i and j are \code{rho}\eqn{^{d}} for
-\code{corr.structure = "ar1"}, \eqn{exp(-phi * d)} for \code{corr.structure = "exponential"},
-\eqn{exp(-phi * d ^ 2)} for \code{corr.structure = "gaussian"}, and \code{rho} when
-\code{corr.structure = "CS"}. Note that \code{d} is the Euclidean distance between
-locations i and j.}
+\item{corr.structure}{One of \code{"ar1"}, \code{exponential}, 
+\code{gaussian}, or \code{"CS"}. Correlations between locations i and j 
+are \code{rho}\eqn{^{d}} for \code{corr.structure = "ar1"}, 
+\eqn{exp(-phi * d)} for \code{corr.structure = "exponential"},
+\eqn{exp(-phi * d ^ 2)} for \code{corr.structure = "gaussian"}, and 
+\code{rho} when \code{corr.structure = "CS"}. Note that \code{d} is the
+ Euclidean distance between locations i and j.}
 
-\item{im.res}{A vector defining the dimension of spatial data. The first entry is the
-number of rows and the second  entry is the number of columns.}
+\item{im.res}{A vector defining the dimension of spatial data. The first 
+entry is the number of rows and the second  entry is the number of columns.}
 
-\item{corr.min}{Scalar value to specify the minimum non-zero correlation. Any correlations below
-\code{corr.min} are set to 0. Especially for high image resolution using this option can result
-in a sparser covariance matrix, which may significantly speed up draws when using \code{spam}.
-This option is preferred to using \code{neighborhood} and associated arguments when the primary
-concern is to avoid very small correlations and improve computation efficiency. Default is \code{NULL},
-which places no restrictions on the correlations.}
+\item{corr.min}{Scalar value to specify the minimum non-zero correlation. 
+Any correlations below \code{corr.min} are set to 0. Especially for high 
+image resolution using this option can result in a sparser covariance 
+matrix, which may significantly speed up draws when using \code{spam}. 
+This option is preferred to using \code{neighborhood} and associated 
+arguments when the primary concern is to avoid very small correlations 
+and improve computation efficiency. Default is \code{NULL}, which places
+no restrictions on the correlations.}
 
-\item{neighborhood}{Defines the neighborhood within which marginal correlations are non-zero. The default
-is \code{"none"}, which allows marginal correlations to extend indefinitely. \code{neighborhood = "round"}
-defines a circular neighborhood about locations and \code{neighborhood = "rectangle"} defines a
-rectangular neighborhood about locations. Note that this argument differs from that in
+\item{neighborhood}{Defines the neighborhood within which marginal 
+correlations are non-zero. The default is \code{"none"}, which allows 
+marginal correlations to extend indefinitely. \code{neighborhood = "round"}
+defines a circular neighborhood about locations and 
+\code{neighborhood = "rectangle"} defines a rectangular neighborhood about
+locations. Note that this argument differs from that in 
 \code{\link[sim2Dpredictr]{precision_builder}}, in which \code{neighborhood} defines conditional non-zero
 correlations.}
 
-\item{rho}{This is the maximum possible correlation between locations i and j. For all i,j
-\code{rho} MUST be between -1 and 1.}
+\item{rho}{This is the maximum possible correlation between locations i 
+and j. For all i,j \code{rho} MUST be between -1 and 1.}
 
-\item{phi}{A scalar value greater than 0 that determines the decay rate of correlation.
-This argument is only utilized when \code{corr.structure \%in\% c("exponential", "gaussian")}.}
+\item{phi}{A scalar value greater than 0 that determines the decay rate of
+correlation. This argument is only utilized when \code{corr.structure 
+\%in\% c("exponential", "gaussian")}.}
 
-\item{w, h}{If \code{neighborhood = "rectangle"} then w and h are the number of locations
-to the left/right and above/below a location i that define its neighborhood. Any locations
-outside this neighborhood have have zero correlation with location i.}
+\item{w, h}{If \code{neighborhood = "rectangle"} then w and h are the number
+of locations to the left/right and above/below a location i that define 
+its neighborhood. Any locations outside this neighborhood have have zero 
+correlation with location i.}
 
-\item{r}{If \code{neighborhood = "round"}, then if locations i,j are separated by
-distance \eqn{d \ge r}, the correlation between them is zero.}
+\item{r}{If \code{neighborhood = "round"}, then if locations i,j are 
+separated by distance \eqn{d \ge r}, the correlation between them is zero.}
 
-\item{print.all}{If \code{print.all = TRUE}, then prints each correlation and allows you
-to check whether the correlations are as you intended. This option is NOT recommended
-for large point lattices/images.}
+\item{print.all}{If \code{print.all = TRUE}, then prints each correlation 
+and allows you to check whether the correlations are as you intended. This
+option is NOT recommended for large point lattices/images.}
 
-\item{round.d}{If \code{round.d = TRUE}, then d is rounded to the nearest whole number.}
+\item{round.d}{If \code{round.d = TRUE}, then d is rounded to the nearest 
+whole number.}
 }
 \value{
 Returns \eqn{(nr*nc) by (nr*nc)} correlation matrix.
@@ -69,16 +77,18 @@ Returns \eqn{(nr*nc) by (nr*nc)} correlation matrix.
 This function "builds" a correlation matrix based on user specifications.
 }
 \note{
-Caution is recommended when using \code{corr.min} or \code{neighborhood} to set many correlations to 0,
-as not all specifications will result in a positive definite matrix. In particular, sharp drop-offs tend to
-result in non-positive definite matrices.
+Caution is recommended when using \code{corr.min} or 
+\code{neighborhood} to set many correlations to 0, as not all 
+specifications will result in a positive definite matrix. In particular, 
+sharp drop-offs tend to result in non-positive definite matrices.
 }
 \examples{
 ## examples
 correlation_builder(corr.structure = "ar1", im.res = c(3, 3), rho = 0.5,
                     neighborhood = "round", r = 6, print.all = TRUE)
 
-correlation_builder(corr.structure = "exponential", im.res = c(3, 3), phi = 0.5,
+correlation_builder(corr.structure = "exponential", im.res = c(3, 3), 
+                    phi = 0.5,
                     neighborhood = "round", r = 3, print.all = TRUE)
 
 correlation_builder(corr.structure = "CS", im.res = c(3, 3),

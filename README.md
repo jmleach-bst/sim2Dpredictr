@@ -7,7 +7,12 @@
 
 [![Travis build
 status](https://travis-ci.org/jmleach-bst/sim2Dpredictr.svg?branch=master)](https://travis-ci.org/jmleach-bst/sim2Dpredictr)
-[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sim2Dpredictr)](https://cran.r-project.org/package=sim2Dpredictr)
+[![](https://www.r-pkg.org/badges/version/sim2Dpredictr?color=green)](https://cran.r-project.org/package=sim2Dpredictr)
+[![](https://img.shields.io/badge/devel%20version-0.1.1-green.svg)](https://github.com/sim2Dpredictr)
+[![](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![R build
+status](https://github.com/jmleach-bst/sim2Dpredictr/workflows/R-CMD-check/badge.svg)](https://github.com/jmleach-bst/sim2Dpredictr/actions)
+<!-- [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/sim2Dpredictr)](https://cran.r-project.org/package=sim2Dpredictr) -->
 <!-- badges: end -->
 
 The goal of `sim2Dpredictr` is to facilitate straightforward simulation
@@ -25,26 +30,26 @@ distributions with a focus on specific correlation structures;
 alternatively, one can specify conditional dependence via a precision
 matrix, specifically for a Conditional Autoregressive (CAR) model. Tools
 are included for easily constructing and taking the Cholesky
-decomposition of a covariance or precision matrix with either base or
-the package , which makes this process faster when the matrix is sparse.
-The Boolean Model and thresholding of MVN’s are used to simulate
-spatially dependent binary maps. The package also includes a tool for
-easily specifying a parameter vector with spatially clustered non-zero
-elements. These simulation tools are designed for, but not limited to,
-testing the performance of variable selection methods when predictors
-are spatially correlated.
+decomposition of a covariance or precision matrix with either base `R`
+or the `R` package `spam`, which makes this process faster when the
+matrix is sparse. The Boolean Model and thresholding of MVN’s are used
+to simulate spatially dependent binary maps. The package also includes a
+tool for easily specifying a parameter vector with spatially clustered
+non-zero elements. These simulation tools are designed for, but not
+limited to, testing the performance of variable selection methods when
+predictors are spatially correlated.
 
 ## Installation
 
-The cleaned up version is available on
+`sim2Dpredictr` is available on
 [CRAN](https://cran.r-project.org/package=sim2Dpredictr):
 
 ``` r
 install.packages("sim2Dpredictr")
 ```
 
-You can install the latest version of sim2Dpredictr from
-[github](https://github.com) with:
+You can install the latest version of `sim2Dpredictr` from
+[GitHub](https://github.com) with:
 
 ``` r
 devtools::install_github("jmleach-bst/sim2Dpredictr")
@@ -79,23 +84,22 @@ sim.dat <- sim2Dpredictr::sim_Y_MVN_X(N = 3, B = Bex$B,
                                       dist = "binomial")
 
 sim.dat
-#>   Y          X1          X2        X3         X4         X5         X6
-#> 1 0 -1.19289491 -0.09981377  2.340966 -1.4079304 -1.4251619 -0.7854371
-#> 2 0  0.06430991 -0.33507211  0.332351 -1.2285969 -0.7539118 -0.3720584
-#> 3 0 -1.50981085 -0.40899907 -1.028768 -0.2626121 -0.9608074 -0.2231772
-#>            X7         X8         X9 subjectID
-#> 1 -0.02429978 -2.2304743 0.28305276         1
-#> 2  0.87674565 -0.5967922 0.07292196         2
-#> 3  0.11817864 -0.7160610 0.18832640         3
+#>   Y         X1         X2          X3         X4         X5          X6
+#> 1 0 -2.0282067 -0.3947622  0.42719979 -1.4738383 -1.6072186  0.15833971
+#> 2 0 -0.3330351 -0.8197950  0.58310128  0.8063035 -0.8483334 -0.04106633
+#> 3 0 -0.3473204  0.1650669 -0.02370601 -0.6530824  0.4367157 -0.12974569
+#>           X7         X8          X9 subjectID
+#> 1 -0.4085001 -0.3598828 -0.30711039         1
+#> 2  0.7567934  0.9183920 -2.02132766         2
+#> 3  0.4762204  0.6449660 -0.03764253         3
 ```
 
 Once the dependence framework and non-zero parameter vector is set,
-`sim_Y_MVN_X()` can be used to draw as many datasets as necessary, upon
+`sim_Y_MVN_X()` can be used to draw as many data sets as necessary, upon
 each of which variable selection methods are applied; summaries from
-each analyzed dataset can be obtained and then used to evaluate variable
-selection performance. The documentation provides details about how to
-use these functions (and others) to create desired simulations, and a
-detailed vignette is being written to provide further guidance.
+each analyzed data set can be obtained and then used to evaluate
+variable selection performance. The documentation provides details about
+how to use these functions (and others) to create desired simulations.
 
 # References
 

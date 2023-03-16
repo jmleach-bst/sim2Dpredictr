@@ -5,17 +5,20 @@
 #' for the multinomial distribution.
 #' 
 #' @param V A numeric value stating the number of categories desired.
-#' @param B A list, each element of which contains a parameter vector. The list should have 
-#' length \code{V - 1}, i.e., should contain parameter values associated with all categories 
-#' except the reference category, following Agresti (2007). Alternatively, \code{B} may be a 
-#' list of length \code{V} if one desires to specify parameters for every category, i.e., 
-#' the over-parameterized model used in Friedman (2010). 
-#' @param X A matrix, each row of which contains subject covariate/predictor values. 
-#' @param X.incl.X0 Logical. When \code{TRUE}, \code{X} should contain column of 1's for
-#' the intercept. Otherwise, a column of 1's is generated internally. Default is \code{FALSE}.
-#' @return A matrix containing subject-specific probabilities for each category of the
-#' multinomial distribution. The number of rows equals \code{nrow(X)} and the number of 
-#' columns equals \code{V}. 
+#' @param B A list, each element of which contains a parameter vector. The 
+#' list should have length \code{V - 1}, i.e., should contain parameter values
+#' associated with all categories except the reference category, following 
+#' Agresti (2007). Alternatively, \code{B} may be a list of length \code{V} 
+#' if one desires to specify parameters for every category, i.e., the
+#' over-parameterized model used in Friedman (2010). 
+#' @param X A matrix, each row of which contains subject covariate/predictor 
+#' values. 
+#' @param X.incl.X0 Logical. When \code{TRUE}, \code{X} should contain column
+#' of 1's for the intercept. Otherwise, a column of 1's is generated 
+#' internally. Default is \code{FALSE}.
+#' @return A matrix containing subject-specific probabilities for each 
+#' category of the multinomial distribution. The number of rows equals 
+#' \code{nrow(X)} and the number of columns equals \code{V}. 
 #' @references
 #' \insertRef{Agresti:2007}{sim2Dpredictr}
 #' 
@@ -39,7 +42,8 @@
 #' ## subject specific probabilities for each category
 #' generate_multinom_probs(V = vt, X = xt, B = bt)
 #' 
-#' ## subject specific probabilities for each category (over-parameterized model)
+#' ## subject specific probabilities for each category 
+#' ## (over-parameterized model)
 #' generate_multinom_probs(V = vt, X = xt, B = bu)
 #' 
 #' @export 

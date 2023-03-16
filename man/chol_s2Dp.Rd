@@ -30,93 +30,113 @@ chol_s2Dp(
 )
 }
 \arguments{
-\item{matrix.type}{Determines whether to build a covariance matrix, \code{"cov"}, or a
-precision matrix, \code{"prec"}. See \code{\link{correlation_builder}{sim2Dpredictr}} and
+\item{matrix.type}{Determines whether to build a covariance matrix, 
+\code{"cov"}, or a precision matrix, \code{"prec"}. See 
+\code{\link{correlation_builder}{sim2Dpredictr}} and
 \code{\link{precision_builder}{sim2Dpredictr}} for more details.}
 
-\item{im.res}{A vector defining the dimension of spatial data. The first entry is the
-number of rows and the second  entry is the number of columns.}
+\item{im.res}{A vector defining the dimension of spatial data. The first 
+entry is the number of rows and the second  entry is the number of columns.}
 
-\item{use.spam}{If \code{use.spam = TRUE} then use tools from the R package \code{spam};
-otherwise, base R functions are employed. For large dimension MVN with sparse correlation
-structure, \code{spam} is recommended; otherwise, base R may be faster. Defaults to \code{FALSE}.}
+\item{use.spam}{If \code{use.spam = TRUE} then use tools from the R package
+\code{spam}; otherwise, base R functions are employed. For large dimension
+MVN with sparse correlation structure, \code{spam} is recommended; 
+otherwise, base R may be faster. Defaults to \code{FALSE}.}
 
-\item{corr.structure}{One of \code{"ar1"}, \code{exponential}, \code{gaussian},
-or \code{"CS"}. Correlations between locations i and j are \code{rho}\eqn{^{d}} for
-\code{corr.structure = "ar1"}, \eqn{exp(-phi * d)} for \code{corr.structure = "exponential"},
-\eqn{exp(-phi * d ^ 2)} for \code{corr.structure = "gaussian"}, and \code{rho} when
-\code{corr.structure = "CS"}. Note that \code{d} is the Euclidean distance between
-locations i and j.}
+\item{corr.structure}{One of \code{"ar1"}, \code{exponential}, 
+\code{gaussian}, or \code{"CS"}. Correlations between locations i and j 
+are \code{rho}\eqn{^{d}} for \code{corr.structure = "ar1"}, 
+\eqn{exp(-phi * d)} for \code{corr.structure = "exponential"},
+\eqn{exp(-phi * d ^ 2)} for \code{corr.structure = "gaussian"}, and 
+\code{rho} when \code{corr.structure = "CS"}. Note that \code{d} is the
+ Euclidean distance between locations i and j.}
 
-\item{rho}{This is the maximum possible correlation between locations i and j. For all i,j
-\code{rho} MUST be between -1 and 1.}
+\item{rho}{This is the maximum possible correlation between locations i 
+and j. For all i,j \code{rho} MUST be between -1 and 1.}
 
-\item{phi}{A scalar value greater than 0 that determines the decay rate of correlation.
-This argument is only utilized when \code{corr.structure \%in\% c("exponential", "gaussian")}.}
+\item{phi}{A scalar value greater than 0 that determines the decay rate of
+correlation. This argument is only utilized when \code{corr.structure 
+\%in\% c("exponential", "gaussian")}.}
 
-\item{tau}{A vector containing precision parameters. If of length 1, then all precisions are assumed equal.
-Otherwise the length of \code{tau} should equal the number of variables.}
+\item{tau}{A vector containing precision parameters. If of length 1, then 
+all precisions are assumed equal. Otherwise the length of \code{tau} should 
+equal the number of variables.}
 
-\item{alpha}{A scalar value between 0 and 1 that defines the strength of correlations. Note that when
-\code{alpha = 0} the data are independent and when \code{alpha = 1}, the joint distribution is
-the improper Intrinsic Autoregression (IAR), which cannot be used to generate data. Note also that  while
-\code{alpha} does control dependence it is not interpretable as a correlation.}
+\item{alpha}{A scalar value between 0 and 1 that defines the strength of 
+correlations. Note that when \code{alpha = 0} the data are independent and
+when \code{alpha = 1}, the joint distribution is the improper Intrinsic 
+Autoregression (IAR), which cannot be used to generate data. Note also that
+while \code{alpha} does control dependence it is not interpretable as a 
+correlation.}
 
-\item{corr.min}{Scalar value to specify the minimum non-zero correlation. Any correlations below
-\code{corr.min} are set to 0. Especially for high image resolution using this option can result
-in a sparser covariance matrix, which may significantly speed up draws when using \code{spam}.
-This option is preferred to using \code{neighborhood} and associated arguments when the primary
-concern is to avoid very small correlations and improve computation efficiency. Default is \code{NULL},
-which places no restrictions on the correlations.}
+\item{corr.min}{Scalar value to specify the minimum non-zero correlation. 
+Any correlations below \code{corr.min} are set to 0. Especially for high 
+image resolution using this option can result in a sparser covariance 
+matrix, which may significantly speed up draws when using \code{spam}. 
+This option is preferred to using \code{neighborhood} and associated 
+arguments when the primary concern is to avoid very small correlations 
+and improve computation efficiency. Default is \code{NULL}, which places
+no restrictions on the correlations.}
 
-\item{neighborhood}{Defines the neighborhood within which marginal correlations are non-zero. The default
-is \code{"none"}, which allows marginal correlations to extend indefinitely. \code{neighborhood = "round"}
-defines a circular neighborhood about locations and \code{neighborhood = "rectangle"} defines a
-rectangular neighborhood about locations. Note that this argument differs from that in
+\item{neighborhood}{Defines the neighborhood within which marginal 
+correlations are non-zero. The default is \code{"none"}, which allows 
+marginal correlations to extend indefinitely. \code{neighborhood = "round"}
+defines a circular neighborhood about locations and 
+\code{neighborhood = "rectangle"} defines a rectangular neighborhood about
+locations. Note that this argument differs from that in 
 \code{\link[sim2Dpredictr]{precision_builder}}, in which \code{neighborhood} defines conditional non-zero
 correlations.}
 
-\item{w, h}{If \code{neighborhood = "rectangle"} then w and h are the number of locations
-to the left/right and above/below a location i that define its neighborhood. Any locations
-outside this neighborhood have have zero correlation with location i.}
+\item{w, h}{If \code{neighborhood = "rectangle"} then w and h are the number
+of locations to the left/right and above/below a location i that define 
+its neighborhood. Any locations outside this neighborhood have have zero 
+correlation with location i.}
 
-\item{r}{If \code{neighborhood = "round"}, then if locations i,j are separated by
-distance \eqn{d \ge r}, the correlation between them is zero.}
+\item{r}{If \code{neighborhood = "round"}, then if locations i,j are 
+separated by distance \eqn{d \ge r}, the correlation between them is zero.}
 
-\item{print.R, print.S, print.Q}{Logical. When \code{TRUE}, then print the correlation, covariance,
-or precision matrix before taking the Cholesky decomposition. If \code{sigma} = 1, then S = R.}
+\item{print.R, print.S, print.Q}{Logical. When \code{TRUE}, then print the 
+correlation, covariance, or precision matrix before taking the Cholesky 
+decomposition. If \code{sigma} = 1, then S = R.}
 
-\item{sigma}{Specify the desired standard deviations; the default is 1, in which case the
-Cholesky decomposition is of a correlation matrix. If \code{sigma} != 1, then the
- Cholesky decomposition is of a covariance Matrix.
- \itemize{
-   \item If sigma is a vector then length(sigma) must be equal to the total number of
-    locations, i.e. \eqn{(n.row * n.col) by (n.row * n.col)}
-   \item  sigma can take any scalar value when specifying common standard deviation.
- }}
+\item{sigma}{Specify the desired standard deviations; the default is 1, in
+which case the Cholesky decomposition is of a correlation matrix. If 
+\code{sigma} != 1, then the Cholesky decomposition is of a covariance 
+Matrix.
+  \itemize{
+    \item If sigma is a vector then length(sigma) must be equal to the
+    total number of locations, i.e. \eqn{(n.row * n.col) by (n.row * n.col)}.
+    \item sigma can take any scalar value when specifying common standard
+    deviation.
+  }}
 
-\item{triangle}{Determine whether to output an upper (\code{triangle = "upper"}) or
-lower (\code{triangle = "lower"}) triangular matrix.}
+\item{triangle}{Determine whether to output an upper 
+(\code{triangle = "upper"}) or lower (\code{triangle = "lower"}) triangular
+matrix.}
 
-\item{print.all}{If \code{print.all = TRUE}, then prints each correlation and allows you
-to check whether the correlations are as you intended. This option is NOT recommended
-for large point lattices/images.}
+\item{print.all}{If \code{print.all = TRUE}, then prints each correlation 
+and allows you to check whether the correlations are as you intended. This
+option is NOT recommended for large point lattices/images.}
 
-\item{round.d}{If \code{round.d = TRUE}, then d is rounded to the nearest whole number.}
+\item{round.d}{If \code{round.d = TRUE}, then d is rounded to the nearest 
+whole number.}
 
-\item{return.cov, return.prec}{Logical. When \code{TRUE}, also return the covariance or precision
-matrix, respectively. This is recommended when using \code{spam} to generate draws from the MVN.}
+\item{return.cov, return.prec}{Logical. When \code{TRUE}, also return the 
+covariance or precision matrix, respectively. This is recommended when 
+using \code{spam} to generate draws from the MVN.}
 }
 \value{
-Matrix of dimension (n.row x n.col) x (n.row x n.col). If either \code{return.cov} or
-\code{return.prec} is \code{TRUE}, then returns a list where the first element is the covariance
-or precision matrix, and the second element is the Cholesky factor.
+Matrix of dimension (n.row x n.col) x (n.row x n.col). If either 
+\code{return.cov} or \code{return.prec} is \code{TRUE}, then returns a 
+list where the first element is the covariance or precision matrix, and the
+second element is the Cholesky factor.
 }
 \description{
-The function first builds a correlation matrix with correlation.builder, converts
-that matrix to a covariance matrix if necessary, and then takes the Cholesky decomposition
-of the matrix using either base R or the R package \code{spam}. Note that \code{spam}
-is particularly effective when the matrix is sparse.
+The function first builds a correlation matrix with correlation.builder, 
+converts that matrix to a covariance matrix if necessary, and then takes 
+the Cholesky decomposition of the matrix using either base R or the R 
+package \code{spam}. Note that \code{spam} is particularly effective when
+the matrix is sparse.
 }
 \examples{
 
