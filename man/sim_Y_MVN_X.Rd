@@ -163,19 +163,20 @@ the Poisson distribution can be unnaturally large.
 }
 \examples{
 ## generate precision matrix and take Cholesky decomposition
-Rpre <- chol_s2Dp(im.res = c(5, 5), matrix.type = "prec",
+Rpre <- chol_s2Dp(im.res = c(3, 3), matrix.type = "prec",
                   use.spam = TRUE, neighborhood = "ar1",
                   triangle = "upper", return.prec = TRUE)
 ## Generate correlation matrix & take Cholesky decomposition
-Rcov <- chol_s2Dp(corr.structure = "ar1", im.res = c(5, 5), rho = 0.5,
+Rcov <- chol_s2Dp(corr.structure = "ar1", im.res = c(3, 3), 
+                  rho = 0.5,
                   triangle = "upper",
                   use.spam = FALSE, neighborhood = "none")
 
 ## Define non-zero beta values
-Bex <- beta_builder(row.index = c(3, 3, 4, 4), 
-                    col.index = c(3, 4, 3, 4),
-                    im.res = c(5, 5),
-                    B0 = 0, B.values = rep(1, 4),
+Bex <- beta_builder(row.index = c(2, 3), 
+                    col.index = c(3, 3),
+                    im.res = c(3, 3),
+                    B0 = 0, B.values = rep(1, 2),
                     output.indices = FALSE)
 ## Simulate Datasets
 ## parameter values

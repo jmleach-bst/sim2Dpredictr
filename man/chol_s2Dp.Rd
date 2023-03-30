@@ -141,22 +141,28 @@ the matrix is sparse.
 \examples{
 
 ## Use R package spam for Cholesky decomposition
-R <- chol_s2Dp(im.res = c(5, 5), matrix.type = "prec",
-               use.spam = TRUE, neighborhood = "ar1",
-               triangle = "upper")
+R_spam <- chol_s2Dp(im.res = c(3, 3), matrix.type = "prec",
+                    use.spam = TRUE, neighborhood = "ar1",
+                    triangle = "upper")
 
 ## Use base R for Cholesky decomposition
-chol_s2Dp(corr.structure = "ar1", im.res = c(3, 3), rho = 0.15,
-        neighborhood = "round", r = 3, use.spam = FALSE)
+R_base <- chol_s2Dp(corr.structure = "ar1", 
+                    im.res = c(3, 3), rho = 0.15,
+                    neighborhood = "round", 
+                    r = 3, use.spam = FALSE)
 
 ## Specify standard deviations instead of default of sigma = 1.
-chol_s2Dp(corr.structure = "ar1",im.res = c(3, 3), rho = 0.15,
-        neighborhood = "round", r = 3, sigma = runif(9, 1.1, 4))
-
+R_sd <- chol_s2Dp(corr.structure = "ar1",
+                  im.res = c(3, 3), rho = 0.15,
+                  neighborhood = "round", r = 3, 
+                  sigma = runif(9, 1.1, 4))
+\dontrun{
 ## Print options ON
-chol_s2Dp(corr.structure = "ar1", im.res = c(3, 3), rho = 0.15,
-          sigma = 1:9, neighborhood = "round", r = 3,
-          print.R = TRUE, print.S = TRUE)
+R_pr_on <- chol_s2Dp(corr.structure = "ar1", 
+                     im.res = c(3, 3), rho = 0.15,
+                     sigma = 1:9, neighborhood = "round", 
+                     r = 3, print.R = TRUE, print.S = TRUE)
+ }
 
 }
 \references{
