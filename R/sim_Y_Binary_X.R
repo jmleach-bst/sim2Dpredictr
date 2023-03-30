@@ -231,7 +231,7 @@ sim_Y_Binary_X <- function(N, B, rand.err = 1, dist,
         } else {
           perc.ct <- quantile(x = Y0, probs = Y.thresh, type = 3)
           cat("The ", 100 * Y.thresh, 
-              "th Percentile (threshold) is ", 
+              "the Percentile (threshold) is ", 
               perc.ct, ".", "\n")
           Y[Y0 > perc.ct] <- 1
           Y[Y0 <= perc.ct] <- 0
