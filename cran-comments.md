@@ -19,4 +19,4 @@ title: "CRAN comments for sim2Dpredictr"
 0 errors ✔ | 0 warnings ✔ | 2 notes ✖
 
 ## Notes on notes
-* Both notes appear to be related to the testing platform and not the packge itself.
+* Both notes appear to be related to the testing platform and not the package itself.
